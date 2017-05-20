@@ -34,7 +34,7 @@ public class WelcomeController {
     public String welcome2(Model model) {
         User u = new User();
         u.setId(10);
-        u.setName("ali");
+        //u.setName("ali");
         u.setUsername("akbari");
         // Add date to model so it can be display in view
         model.addAttribute("user", u);
@@ -48,7 +48,7 @@ public class WelcomeController {
     public String welcome4(@RequestParam("id")String id,Model model) {
         User u = new User();
         u.setId(10);
-        u.setName("ali");
+//        u.setName("ali");
         u.setUsername("akbari");
         // Add date to model so it can be display in view
         model.addAttribute("user", u);

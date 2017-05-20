@@ -39,7 +39,7 @@ public class UserInsertController {
         // will be mapped to /WEB-INF/jsp/welcome.jsp
         User u = new User();
         u.setId(1008);
-        u.setName("siamak");
+//        u.setName("siamak");
         u.setUsername("ali");
         userManagerImpl.insertUser(u);
         

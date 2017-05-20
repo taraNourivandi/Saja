@@ -1,0 +1,257 @@
+/*add vazir font*/
+@font-face {
+    font-family: Vazir;
+    src: url('../fonts/vazir/Vazir.eot');
+    src: url('../fonts/vazir/Vazir.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/vazir/Vazir.woff') format('woff'),
+    url('../fonts/vazir/Vazir.ttf') format('truetype');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: Vazir;
+    src: url('../fonts/vazir/Vazir-Bold.eot');
+    src: url('../fonts/vazir/Vazir-Bold.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/vazir/Vazir-Bold.woff') format('woff'),
+    url('../fonts/vazir/Vazir-Bold.ttf') format('truetype');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: Vazir;
+    src: url('../fonts/vazir/Vazir-Light.eot');
+    src: url('../fonts/vazir/Vazir-Light.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/vazir/Vazir-Light.woff') format('woff'),
+    url('../fonts/vazir/Vazir-Light.ttf') format('truetype');
+    font-weight: 300;
+}
+
+/*my_styles*/
+html {
+    line-height: 1.5;
+    font-family: "Vazir", "B Yekan", Tahoma, sans-serif;
+    font-weight: normal;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+body {
+    background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
+}
+
+/*banner-logo*/
+nav.banner-logo {
+    min-height: 200px;
+    background-image: linear-gradient(145deg, #3d3393 0%, #2b76b9 37%, #2cacd1 65%, #35eb93 100%);
+    /*background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);*/
+}
+
+nav.banner-logo .logo-holder {
+    display: block;
+    background-image: url(../img/saja_logo.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 85px;
+    width: 85px;
+    transition: 0.5s;
+}
+
+nav.banner-logo .logo-holder:hover {
+    filter: invert(100%);
+    transition: 0.5s;
+}
+
+/*//banner-logo*/
+
+/*main-nav*/
+
+#top-header {
+    width: 100%;
+    height: 100%;
+}
+
+#top-header a.logo-holder {
+    height: 130px;
+    width: 130px;
+    margin: auto;
+}
+
+/*make logo center*/
+@media screen and (min-width: 600px) {
+    #top-header a.logo-holder {
+        height: 100px;
+        width: 100px;
+        margin: 0;
+        margin-right: 30px;
+    }
+}
+
+#top-header h1 {
+    font-weight: bold;
+    font-size: 40px;
+    color: #ffffff;
+    margin-right: 30px;
+}
+
+header nav.main-nav {
+    font-weight: bold;
+    height: 65px;
+    background-color: #16a085;
+    margin-bottom: 10px;
+}
+
+header nav.main-nav a.login-button {
+    background-color: #2980b9;
+    padding: 0 5px;
+    width: 100px;
+    margin-right: 10px;
+}
+
+header nav.main-nav a.login-button i {
+    font-size: 40px;
+    margin: 0;
+}
+
+div#login-modal i.prefix {
+    width: auto;
+    color: teal;
+}
+
+
+div#login-modal i.invalid {
+    color: red;
+}
+
+nav.main-nav a#nav-mobile-button i {
+    font-size: 60px;
+}
+
+nav.main-nav ul#mobile-nav {
+    padding-right: 0;
+}
+
+nav.main-nav a.brand-logo div.logo {
+    background-image: url(../img/saja_logo.png);
+}
+
+nav.main-nav .phone-no {
+    margin-left: 40px;
+}
+
+nav.main-nav ul.side-nav li:first-child img.logo {
+    margin-top: 20px;
+}
+
+/*//main-nav*/
+
+body {
+    min-height: 100vh;
+}
+
+main p span.bold {
+    font-weight: bold;
+}
+
+main div#main-slider {
+    width: 100%;
+    height: auto;
+}
+
+main div#main-slider .carousel .carousel-item {
+    width: 800px;
+    height: auto;
+}
+
+main section.content {
+    padding-top: 20px;
+}
+
+main section.content article.content-item {
+    margin: 5px 0;
+}
+
+main section.content article.content-item i {
+    color: #16a085;
+    font-size: 120px;
+    margin-bottom: 10px;
+}
+
+main section.content article.content-item p.item-caption {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+main section.content article.content-item p.item-explain {
+    font-weight: 300;
+    font-size: 15px;
+}
+
+/*//main-content*/
+
+/*footer*/
+footer.page-footer {
+    background-color: #16a085;
+}
+
+/*sticky footer*/
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+/*//sticky footer*/
+
+footer a:hover {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+footer h5 {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+footer div.container div.row div:nth-child(3) {
+    height: 150px;
+}
+
+footer .logo-holder {
+    background-image: url(../img/saja_logo.png);
+    height: 85px;
+    width: 85px;
+    filter: invert(100%);
+    transition: 0.5s;
+    margin: auto;
+}
+
+footer .logo-holder:hover {
+    background-image: url(../img/saja_logo.png);
+    filter: none;
+    transition: 0.5s;
+    margin: auto;
+}
+
+/*//footer*/
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+.error-message {
+    color: red;
+}
+.hidden {
+    display: none;
+}
+
+

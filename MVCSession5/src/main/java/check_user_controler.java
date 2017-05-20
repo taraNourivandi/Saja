@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Fatemeh-pc
  */
-@WebServlet(urlPatterns = {"/check"})
+@WebServlet(urlPatterns = {"/invalid"})
 public class check_user_controler extends HttpServlet {
 
     /**

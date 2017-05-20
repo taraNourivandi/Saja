@@ -2,11 +2,13 @@
 
 <html>
 <head>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/home.css" media="screen,projection"/>
     <title>Welcome</title>
+    
 </head>
 
 <body>
-<h2>Welcome to Court Reservation System</h2>
+<h1>Welcome to Court Reservation System</h1>
 Today is ${today}
 </body>
 </html>

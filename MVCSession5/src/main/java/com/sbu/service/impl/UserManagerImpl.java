@@ -28,5 +28,20 @@ public class UserManagerImpl /*implements UserManager*/ {
     public List<User> findAllUsers() {
         return userDAOImpl.findAllUsers();
     }
-
+    
+    public User findLoginUser(String userName, String pass)
+    {
+        //server side checked
+        if((userName == null) || (pass == null) || (userName.equals("")) || (pass.equals("")))
+            return null;
+        //call model function for finding user 
+        User user = userDAOImpl.findUser(userName);
+        if(user.getPass().equals(pass))
+            return user;
+        //List<User> users = userDAOImpl.findAllUsers();
+//        if(users.get(2).getPass().equals(pass))
+  //          return users.get(2).getId();
+        else 
+            return null;       
+    }
 }

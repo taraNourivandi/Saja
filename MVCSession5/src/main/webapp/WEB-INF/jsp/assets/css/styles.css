@@ -1,0 +1,181 @@
+/*add google material icons*/
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+
+    src: url('../fonts/google_material_icons/MaterialIcons-Regular.eot'); /* For IE6-8 */
+    src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+        /*url(http://fonts.gstatic.com/s/materialicons/v21/2fcrYFNaTjcS6g4U3t-Y5StnKWgpfO2iSkLzTz-AABg.ttf)*/
+    url('../fonts/google_material_icons/MaterialIcons-Regular.ttf') format('truetype');
+url('../fonts/google_material_icons/MaterialIcons-Regular.woff2') format('woff2');
+url('../fonts/google_material_icons/MaterialIcons-Regular.woff') format('woff');
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+}
+
+body {
+    /*background-color: red;*/
+}
+
+/*add vazir font*/
+@font-face {
+    font-family: Vazir;
+    src: url('../fonts/vazir/Vazir.eot');
+    src: url('../fonts/vazir/Vazir.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/vazir/Vazir.woff') format('woff'),
+    url('../fonts/vazir/Vazir.ttf') format('truetype');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: Vazir;
+    src: url('../fonts/vazir/Vazir-Bold.eot');
+    src: url('../fonts/vazir/Vazir-Bold.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/vazir/Vazir-Bold.woff') format('woff'),
+    url('../fonts/vazir/Vazir-Bold.ttf') format('truetype');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: Vazir;
+    src: url('../fonts/vazir/Vazir-Light.eot');
+    src: url('../fonts/vazir/Vazir-Light.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/vazir/Vazir-Light.woff') format('woff'),
+    url('../fonts/vazir/Vazir-Light.ttf') format('truetype');
+    font-weight: 300;
+}
+
+/*my_styles*/
+html {
+    line-height: 1.5;
+    font-family: "Vazir", "B Yekan", Tahoma, sans-serif;
+    font-weight: normal;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+p {
+    /*line-height: 1.5;*/
+}
+
+/*top-header*/
+header nav.top-header {
+    height: 120px;
+    background-color: #16a085;
+}
+
+nav.top-header a.brand-logo {
+    height: 85px;
+    margin: 17.5px 0;
+}
+
+nav.top-header a.page-title {
+    line-height: 120px;
+    font-weight: bold;
+    font-size: 29px;
+    margin-right: 115px;
+}
+
+nav.top-header a#nav-mobile-button {
+    padding-top: 30px;
+}
+
+nav.top-header a#nav-mobile-button i {
+    font-size: 60px;
+}
+
+/*//top-header*/
+
+/*sidebar*/
+header ul#nav-mobile {
+    padding-right: 0; /*remove unwanted padding*/
+    background-color: #e0f2f1;
+}
+
+header ul#nav-mobile li:first-child {
+    margin-top: 30px;
+}
+
+header ul#nav-mobile ul.collapsible.collapsible-accordion {
+    padding-right: 0; /*remove unwanted padding*/
+}
+
+ul#nav-mobile li.user-profile img {
+    max-height: 65px;
+    max-width: 65px;
+    margin-right: 30px;
+}
+
+ul#nav-mobile li.user-profile p {
+    margin-right: 20px;
+    font-weight: bold;
+}
+
+ul#nav-mobile li.user-profile i {
+    margin-right: 20px;
+    color: #7f8c8d;
+}
+
+ul#nav-mobile li.user-profile i:nth-last-child(1) {
+    cursor: pointer;
+
+}
+
+ul#nav-mobile li.user-profile a i:first-child:hover {
+    color: #2c3e50;
+}
+
+.side-nav li > a:hover {
+    background-color: rgba(0, 0, 0, -0.95);
+}
+
+.side-nav li > a {
+    padding: 0px;
+}
+
+/*padding to main & footer*/
+main, header, footer {
+    padding-right: 300px;
+}
+
+@media only screen and (max-width: 992px) {
+    main, header, footer {
+        padding-right: 0;
+    }
+}
+
+/*//sidebar*/
+
+/*main-content*/
+main {
+    min-height: 67.5vh;
+}
+
+main p span.bold {
+    font-weight: bold;
+}
+
+/*//main-content*/
+
+/*footer*/
+footer.page-footer {
+    /*height: 20px;*/
+    background-color: #16a085;
+}
+
+
+
+/*//footer*/
