@@ -11,6 +11,7 @@ import javax.persistence.criteria.Root;
 import org.springframework.stereotype.Repository;
 
 import com.sbu.dao.model.User;
+import javax.persistence.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
@@ -40,5 +41,16 @@ public class UserDAOImpl /*implements UserDAO*/ {
         cq.select(root);
         return entityManager.createQuery(cq).getResultList();
     }
+    
+    public User findUser(String userName){
+        // jpa sintaxt for finding use and return it
+        //User user = entityManager.find(User.class, userName);
+        //User user = entityManager.find(User.class, 3);
+        Query query = entityManager.createNamedQuery("User.findByUsername");
+        query.setParameter("username",userName);
+        User user = (User)query.getSingleResult();
+        return user;
+    }
 
 }
+

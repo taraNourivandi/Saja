@@ -1,8 +1,10 @@
 com\sbu\service\impl\UserManagerImpl.class
 check_user_controler.class
+com\sbu\controller\LoginController.class
 com\sbu\controller\model\Student.class
 com\sbu\service\UserManager.class
 com\sbu\controller\WelcomeController.class
+com\sbu\controller\HomeController.class
 com\sbu\controller\UserInsertController.class
 main_controller.class
 com\sbu\dao\impl\UserDAOImpl.class
@@ -10,4 +12,5 @@ com\sbu\dao\UserDAO.class
 com\sbu\dao\model\User.class
 com\sbu\controller\StudentController.class
 prof_course_controler.class
+com\sbu\controller\model\UserIn.class
 modir_course_controller.class

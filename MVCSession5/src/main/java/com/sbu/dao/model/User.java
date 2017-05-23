@@ -12,14 +12,15 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
+// have to be correct for my DB table
+
 @Entity
-@Table(name = "user")
+@Table(name = "USERTABLE")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
     @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id"),
-    @NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username = :username"),
-    @NamedQuery(name = "User.findByName", query = "SELECT u FROM User u WHERE u.name = :name")})
+    @NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username = :username")})
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -31,9 +32,15 @@ public class User implements Serializable {
     @Column(name = "USERNAME")
     private String username;
     @Basic(optional = false)
-    @Column(name = "NAME")
-    private String name;
-
+    @Column(name = "PASSWORD")
+    private String pass;
+    @Basic(optional = false)
+    @Column(name = "ROLE")
+    private int role;    
+    @Basic(optional = false)
+    @Column(name = "REFID")
+    private int refId;
+    
     public User() {
     }
 
@@ -41,12 +48,14 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public User(Integer id, String username, String name) {
+    public User(Integer id, String username, String pass, int role, int refId) {
         this.id = id;
         this.username = username;
-        this.name = name;
+        this.pass = pass;
+        this.role = role;
+        this.refId = refId;
     }
-
+    
     public Integer getId() {
         return id;
     }
@@ -63,13 +72,31 @@ public class User implements Serializable {
         this.username = username;
     }
 
-    public String getName() {
-        return name;
+    public String getPass() {
+        return pass;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public int getRefId() {
+        return refId;
     }
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
+    public void setRefId(int refId) {
+        this.refId = refId;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
+    }
+
+    
 
     @Override
     public int hashCode() {
