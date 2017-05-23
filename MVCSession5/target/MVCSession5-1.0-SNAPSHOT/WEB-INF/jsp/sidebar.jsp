@@ -6,7 +6,9 @@
 
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<% ArrayList<String> listItem = (ArrayList)session.getAttribute("listItem");%>
+<% ArrayList<String> listItem = (ArrayList)session.getAttribute("listItem");
+   String name = (String)session.getAttribute("username");
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,7 +21,7 @@
         <li class="user-profile valign-wrapper">
             <!--<img src="assets/img/photo_2017-03-27_09-55-25.jpg" alt="عکس کاربر" class="circle responsive-img">-->
             <i class="material-icons medium">face</i>
-            <p>رامک قوامی زاده</p>
+            <p><%=name%></p>
 
             <a href=main.html>
                 <i class="material-icons tooltipped" data-position="bottom" data-delay="50"

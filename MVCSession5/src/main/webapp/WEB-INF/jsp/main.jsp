@@ -11,15 +11,23 @@
 	<meta charset="UTF-8">
 	<!--<base href="enter base url here">-->
 	<title>سجا - سیستم جامع آموزش</title>
-	<link rel="icon" href="${pageContext.request.contextPath}/assets/img/favicon.png" type="image/png" sizes="32x32">
+	<link rel="icon" href="${pageContext.request.contextPath}/resources/img/favicon.png" type="image/png" sizes="32x32">
 	<meta name="description" content="سجا - سیستم جامع آموزش">
 	<meta name="keywords" content="سجا,آموزش,جامع,سیستم">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/materializeMin.css" media="screen,projection"/>
+	<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/adminStyles.css" media="screen,projection"/>
+        
+        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mainStyles.css" media="screen,projection"/>
+      	<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/materialIcons.css" media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/materializeMin.css" media="screen,projection"/>
 	<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/materializeRtl.css" media="screen,projection"/>
-	<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mainStyles.css" media="screen,projection"/>
-	<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/materialIcons.css" media="screen,projection"/>
-        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/home.css" media="screen,projection"/>
+        
+	
+
+        
+        
+        
+        
 </head>
 <body>
 <!--main hedader-->

@@ -11,6 +11,7 @@ import com.sbu.dao.model.User;
 import com.sbu.service.impl.UserManagerImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -40,31 +41,34 @@ public class LoginController {
    {
        response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter() ;
-            //String name = (String)request.getAttribute("name");
-            //String pass = (String)request.getAttribute("pass");
-           String name = userIn.getName();
-           String pass = userIn.getPass();
-            User user = userManagerImpl.findLoginUser( name,pass);
+           // String name = (String)request.getParameter("name");
+           // String pass = (String)request.getParameter("pass");
+            String name = userIn.getName();
+            String pass = userIn.getPass();
+            User user = userManagerImpl.findLoginUser(name,pass);
             if(user == null)
                 out.print("notFound");
             else
             {
                 HttpSession session = request.getSession();
-                session.setAttribute("id", user.getId());
+                session.setAttribute("id", user.getRefId());
                 session.setAttribute("username", user.getUsername());
                 session.setAttribute("role", user.getRole());
-                out.print("home");
-            } 
+                
+                switch (user.getRole())
+                {
+                    case 1 : 
+                       out.print("home/student"); 
+                        break;
+                    case 2 :
+                        out.print("home/prof");
+                        break;
+                    case 3 :
+                        out.print("home/manager");
+                        break;
+                }            
+            }    
             
-        
    }
    
-   @RequestMapping(value = "/addStudent2", method = RequestMethod.POST)
-   public String addStudent2(@ModelAttribute("SpringWeb")Student student, Model model, HttpServletRequest request) {
-      model.addAttribute("name", student.getName());
-      model.addAttribute("age", student.getAge());
-      model.addAttribute("id", student.getId());
-      
-      return "studentinfo";
-   }
 }

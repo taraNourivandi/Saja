@@ -48,8 +48,21 @@ public class UserDAOImpl /*implements UserDAO*/ {
         //User user = entityManager.find(User.class, 3);
         Query query = entityManager.createNamedQuery("User.findByUsername");
         query.setParameter("username",userName);
-        User user = (User)query.getSingleResult();
-        return user;
+        System.out.println("asdfghj");
+        try
+        {
+            Object obj = query.getSingleResult();
+            User user = (User)obj;
+            return user;
+        }
+        catch(Exception e)
+        {
+            return null;
+            
+        }
+        
+        
+        
     }
 
 }

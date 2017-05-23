@@ -14,14 +14,16 @@
     <meta charset="UTF-8">
     <!--<base href="enter base url here">-->
     <title>سجا - سیستم جامع آموزش</title>
-    <link rel="icon" href="assets/img/favicon.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="${pageContext.request.contextPath}/resources/img/favicon.png" type="image/png" sizes="32x32">
     <meta name="description" content="سجا - سیستم جامع آموزش">
     <meta name="keywords" content="سجا,آموزش,جامع,سیستم">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link type="text/css" rel="stylesheet" href="assets/css/materialize.min.css" media="screen,projection"/>
-    <link type="text/css" rel="stylesheet" href="assets/css/materialize_rtl.css" media="screen,projection"/>
-    <link type="text/css" rel="stylesheet" href="assets/css/admin_styles.css">
-    <link type="text/css" rel="stylesheet" href="assets/css/material-icons.css">
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/materializeMin.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/materializeRtl.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mainStyles.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/materialIcons.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/home.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin_styles.css"/>
 </head>
 <body>
 <!--main hedader-->
@@ -390,8 +392,8 @@
 
 <%@ include file="footer.html" %>
 
-<script type="text/javascript" src="assets/js/jquery.min.js"></script>
-<script type="text/javascript" src="assets/js/materialize.min.js"></script>
-<script type="text/javascript" src="assets/js/scripts.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jqueryMin.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/materializeMin.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jscripts.js"></script>
 </body>
 </html>

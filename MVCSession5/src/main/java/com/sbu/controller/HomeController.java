@@ -11,6 +11,7 @@ import com.sbu.dao.model.User;
 import com.sbu.service.impl.UserManagerImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -34,6 +35,45 @@ public class HomeController {
     {
       return "home";
     }
+    
+    private String helperMethod (HttpServletRequest request)
+    {
+        HttpSession session = request.getSession();
+        ArrayList <String> list = userManagerImpl.getRoleList((int)session.getAttribute("role"));
+        session.setAttribute("listItem",list);      
+        return "home";
+        
+    }
+    
+   //should be separated
+   @RequestMapping(value = {"/prof"}, method = RequestMethod.GET)
+    public String crearPersonalProfPage (@ModelAttribute("SpringWeb")UserIn userIn, Model model,HttpServletRequest request, HttpServletResponse response) throws IOException 
+    {       
+        if((int)request.getSession().getAttribute("role") != 2)
+            //not correct -> hove to be load sutable error page
+            return "error";            
+        return helperMethod(request);        
+    }
+    
+    @RequestMapping(value = {"/student"}, method = RequestMethod.GET)
+    public String crearPersonalStudentPage (@ModelAttribute("SpringWeb")UserIn userIn, Model model,HttpServletRequest request, HttpServletResponse response) throws IOException 
+    {       
+        if((int)request.getSession().getAttribute("role") != 1)
+            //not correct -> hove to be load sutable error page
+            return "error";            
+        return helperMethod(request);        
+    }
+    
+    @RequestMapping(value = {"/manager"}, method = RequestMethod.GET)
+    public String crearPersonalManagerPage (@ModelAttribute("SpringWeb")UserIn userIn, Model model,HttpServletRequest request, HttpServletResponse response) throws IOException 
+    {       
+        if((int)request.getSession().getAttribute("role") != 3)
+            //not correct -> hove to be load sutable error page
+            return "error";            
+        return helperMethod(request);        
+    }
+    
+    
    /*
    @RequestMapping(value = "/check", method = RequestMethod.POST)
    public void checkUser(@ModelAttribute("SpringWeb")UserIn userIn, Model model,HttpServletRequest request, HttpServletResponse response) throws IOException 

@@ -9,6 +9,7 @@ com\sbu\controller\UserInsertController.class
 main_controller.class
 com\sbu\dao\impl\UserDAOImpl.class
 com\sbu\dao\UserDAO.class
+com\sbu\filters\LoginFilter.class
 com\sbu\dao\model\User.class
 com\sbu\controller\StudentController.class
 prof_course_controler.class

@@ -42,6 +42,7 @@ public class modir_course_controller extends HttpServlet {
             list.add("مشاهده دروس ارائه شده در هر ترم");
             list.add("تغییر مشخصات");
             String name = "";
+            session.removeAttribute("listItem");
             session.setAttribute("listItem",list);
             session.setAttribute("name", name);
             RequestDispatcher dispatcher=request.getRequestDispatcher("/modir-course.jsp");

@@ -21,4 +21,16 @@
     <welcome-file-list>
         <welcome-file>welcome</welcome-file>
     </welcome-file-list>
+    
+    <filter>
+        <filter-name>LoginFilter</filter-name>
+        <filter-class>com.sbu.filters.LoginFilter</filter-class>
+    </filter>
+    
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/home/*</url-pattern>
+    </filter-mapping>    
+
 </web-app>
+    
