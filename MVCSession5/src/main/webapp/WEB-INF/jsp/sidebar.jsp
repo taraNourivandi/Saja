@@ -23,7 +23,7 @@
             <i class="material-icons medium">face</i>
             <p><%=name%></p>
 
-            <a href=main.html>
+            <a href=logout>
                 <i class="material-icons tooltipped" data-position="bottom" data-delay="50"
                    data-tooltip="خروج از سیستم">power_settings_new</i>
             </a>

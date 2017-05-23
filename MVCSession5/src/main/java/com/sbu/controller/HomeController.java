@@ -73,6 +73,20 @@ public class HomeController {
         return helperMethod(request);        
     }
     
+    @RequestMapping(value = {"/logout"}, method = RequestMethod.GET)
+    public void logout (@ModelAttribute("SpringWeb")UserIn userIn, Model model,HttpServletRequest request, HttpServletResponse response) throws IOException 
+    {       
+        request.getSession().removeAttribute("id");
+        request.getSession().removeAttribute("username");
+        request.getSession().removeAttribute("role");
+        
+        response.sendRedirect("../login");
+        //return "main";            
+           
+    }
+    
+    
+    
     
    /*
    @RequestMapping(value = "/check", method = RequestMethod.POST)
