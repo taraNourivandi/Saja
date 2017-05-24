@@ -6,6 +6,9 @@
     <persistence-unit name="localEntity">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <class>com.sbu.dao.model.User</class>
+        <class>com.sbu.dao.model.Prof</class>
+        <class>com.sbu.dao.model.Stdtable</class>
+        <class>com.sbu.dao.model.Modir</class>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/simple?zeroDateTimeBehavior=convertToNull"/>
             <property name="javax.persistence.jdbc.user" value="root"/>
@@ -30,7 +33,10 @@
     
     <persistence-unit name="sbueng">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
-        <!--<class>com.sbu.dao.model.User</class>-->
+        <class>com.sbu.dao.model.User</class>
+        <class>com.sbu.dao.model.Prof</class>
+        <class>com.sbu.dao.model.Stdtable</class>
+        <class>com.sbu.dao.model.Modir</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
             <property name="javax.persistence.jdbc.url"    value="jdbc:h2:tcp://localhost/~/neteng" />

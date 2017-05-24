@@ -7,8 +7,15 @@ package com.sbu.controller;
 
 import com.sbu.controller.model.Student;
 import com.sbu.controller.model.UserIn;
+import com.sbu.dao.model.Modir;
+import com.sbu.dao.model.Prof;
+import com.sbu.dao.model.Stdtable;
 import com.sbu.dao.model.User;
+import com.sbu.service.impl.ManagerManagerImpl;
+import com.sbu.service.impl.ProfManagerImpl;
 import com.sbu.service.impl.UserManagerImpl;
+import com.sbu.service.impl.StdManagerImpl;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -29,7 +36,16 @@ public class HomeController {
     
     @Autowired
     public UserManagerImpl userManagerImpl;
-
+    
+    @Autowired
+    public ProfManagerImpl profManagerImpl;
+    
+    @Autowired
+    public StdManagerImpl stdManagerImpl;
+    
+    @Autowired
+    public ManagerManagerImpl managerManagerImpl;
+    
     //@RequestMapping(value = "/login", method = RequestMethod.GET)
     public String homePage() 
     {
@@ -51,7 +67,12 @@ public class HomeController {
     {       
         if((int)request.getSession().getAttribute("role") != 2)
             //not correct -> hove to be load sutable error page
-            return "error";            
+            return "error";       
+        int id = (int) request.getSession().getAttribute("id");
+        Prof prof = profManagerImpl.findProf(id);
+        String name = prof.getName();
+        request.getSession().setAttribute("name", name);
+        
         return helperMethod(request);        
     }
     
@@ -60,7 +81,11 @@ public class HomeController {
     {       
         if((int)request.getSession().getAttribute("role") != 1)
             //not correct -> hove to be load sutable error page
-            return "error";            
+            return "error"; 
+        int id = (int) request.getSession().getAttribute("id");
+        Stdtable std = stdManagerImpl.findProf(id);
+        String name = std.getName();
+        request.getSession().setAttribute("name", name);
         return helperMethod(request);        
     }
     
@@ -69,7 +94,13 @@ public class HomeController {
     {       
         if((int)request.getSession().getAttribute("role") != 3)
             //not correct -> hove to be load sutable error page
-            return "error";            
+            return "error"; 
+        
+        int id = (int) request.getSession().getAttribute("id");
+        Modir manager = managerManagerImpl.findProf(id);
+        String name = manager.getName();
+        request.getSession().setAttribute("name", name);
+        
         return helperMethod(request);        
     }
     
@@ -79,6 +110,7 @@ public class HomeController {
         request.getSession().removeAttribute("id");
         request.getSession().removeAttribute("username");
         request.getSession().removeAttribute("role");
+        request.getSession().removeAttribute("name");
         
         response.sendRedirect("../login");
         //return "main";            

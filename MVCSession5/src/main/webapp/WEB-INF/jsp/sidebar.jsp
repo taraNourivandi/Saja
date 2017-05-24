@@ -7,7 +7,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% ArrayList<String> listItem = (ArrayList)session.getAttribute("listItem");
-   String name = (String)session.getAttribute("username");
+   String name = (String)session.getAttribute("name");
 %>
 <!DOCTYPE html>
 <html>
