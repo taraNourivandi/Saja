@@ -5,20 +5,35 @@
  */
 package com.sbu.controller;
 
+//input model
 import com.sbu.controller.model.Student;
 import com.sbu.controller.model.UserIn;
+import com.sbu.controller.model.CourseIn;
+
+//dao model
 import com.sbu.dao.model.Modir;
 import com.sbu.dao.model.Prof;
 import com.sbu.dao.model.Stdtable;
 import com.sbu.dao.model.User;
+import com.sbu.dao.model.Course;
+import com.sbu.dao.model.Term;
+import com.sbu.dao.model.Major;
+
+//service imp
 import com.sbu.service.impl.ManagerManagerImpl;
 import com.sbu.service.impl.ProfManagerImpl;
 import com.sbu.service.impl.UserManagerImpl;
 import com.sbu.service.impl.StdManagerImpl;
+import com.sbu.service.impl.CourseManagerImpl;
 
+//others
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -46,6 +61,9 @@ public class HomeController {
     @Autowired
     public ManagerManagerImpl managerManagerImpl;
     
+    @Autowired
+    public CourseManagerImpl courseManagerImpl;
+    
     //@RequestMapping(value = "/login", method = RequestMethod.GET)
     public String homePage() 
     {
@@ -55,7 +73,8 @@ public class HomeController {
     private String helperMethod (HttpServletRequest request)
     {
         HttpSession session = request.getSession();
-        ArrayList <String> list = userManagerImpl.getRoleList((int)session.getAttribute("role"));
+        //ArrayList <String> list = userManagerImpl.getRoleList((int)session.getAttribute("role"));
+        HashMap list = userManagerImpl.getRoleList((int)session.getAttribute("role"));
         session.setAttribute("listItem",list);      
         return "home";
         
@@ -113,45 +132,84 @@ public class HomeController {
         request.getSession().removeAttribute("name");
         
         response.sendRedirect("../login");
-        //return "main";            
-           
+        //return "main";               
+    }   
+    
+    //reyhaneh
+    @RequestMapping (value = {"/prof/changePassword"} , method = RequestMethod.GET)
+    public String changePassProf (@ModelAttribute("SpringWeb")UserIn userIn, Model model,HttpServletRequest request, HttpServletResponse response) throws IOException
+    {
+        return "prof-change";
     }
     
     
-    
-    
-   /*
-   @RequestMapping(value = "/check", method = RequestMethod.POST)
-   public void checkUser(@ModelAttribute("SpringWeb")UserIn userIn, Model model,HttpServletRequest request, HttpServletResponse response) throws IOException 
-   {
-       response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter() ;
-            String name = (String)request.getAttribute("name");
-            String pass = (String)request.getAttribute("pass");
-           //String name = userIn.getName();
-           //String pass = userIn.getPass();
-            User user = userManagerImpl.findLoginUser( name,pass);
-            if(user == null)
-                out.print("notFound");
-            else
-            {
-                HttpSession session = request.getSession();
-                session.setAttribute("id", user.getId());
-                session.setAttribute("username", user.getUsername());
-                session.setAttribute("role", user.getRole());
-                out.print("home");
-            } 
-            
+    //tara
+    @RequestMapping(value = {"/maneger/def_change_course"}, method = RequestMethod.GET)
+    public String createCourseDefPage (@ModelAttribute("SpringWeb")CourseIn courseIn, Model model,HttpServletRequest request, HttpServletResponse response) throws IOException 
+    { 
+        response.setContentType("text/html;charset=UTF-8");
+        System.out.println("in createCourseDefPage");
+        if((int)request.getSession().getAttribute("role") != 3)            
+            return "error";         
         
-   }
-   
-   @RequestMapping(value = "/addStudent2", method = RequestMethod.POST)
-   public String addStudent2(@ModelAttribute("SpringWeb")Student student, Model model, HttpServletRequest request) {
-      model.addAttribute("name", student.getName());
-      model.addAttribute("age", student.getAge());
-      model.addAttribute("id", student.getId());
-      
-      return "studentinfo";
-   }
-*/
+        //create required list
+        //1) get all courses
+        List<Course> allCourses = courseManagerImpl.findAlls();
+        List<Term> allTerms = courseManagerImpl.findAllTerms();
+        List<Major> allMajors = courseManagerImpl.findAllMajors();
+        List<String> sections = courseManagerImpl.findAllSection();               
+        List<String> courseType = courseManagerImpl.findAllCourseType();        
+        List<String> courseTypeLab = courseManagerImpl.findAllCourseTypeLab();        
+        List<String> courseGender = courseManagerImpl.findAllCourseGender();        
+        
+        request.setAttribute("courses", allCourses);
+        request.setAttribute("terms", allTerms);
+        request.setAttribute("majors", allMajors);  
+        request.setAttribute("section", sections);  
+        request.setAttribute("courseType", courseType);
+        request.setAttribute("courseTypeLab", courseTypeLab);
+        request.setAttribute("courseGender", courseGender);       
+        return "modir-course";
+    }
+    
+    @RequestMapping(value = {"/maneger/add_new_course"}, method = RequestMethod.POST)
+    public String createCoursePage (@ModelAttribute("SpringWeb")CourseIn courseIn, Model model,HttpServletRequest request, HttpServletResponse response) throws IOException 
+    { 
+        if((int)request.getSession().getAttribute("role") != 3)            
+            return "error";         
+        Integer ID = courseIn.getID();
+        String name = courseIn.getName();
+        int units = courseIn.getUnits();    
+        int preCourse = courseIn.getPreCourse();
+        int courseTerm = courseIn.getCourseTerm();
+        int courseMager = courseIn.getCourseMager();
+        int coursesection = courseIn.getCoursesection();
+        int labtheorytype = courseIn.getLabtheorytype();
+        int coursetype = courseIn.getCoursetype();
+        int coursegender = courseIn.getCoursegender();
+        
+        courseManagerImpl.saveCourse(ID,name,units,preCourse,courseTerm
+                ,courseMager,coursesection,labtheorytype,coursetype,coursegender);
+        return helperMethod(request);     
+    }   
+    
+    @RequestMapping(value = {"/maneger/edit_new_course"}, method = RequestMethod.POST)
+    public String editCoursePage (@ModelAttribute("SpringWeb")CourseIn courseIn, Model model,HttpServletRequest request, HttpServletResponse response) throws IOException 
+    {
+        if((int)request.getSession().getAttribute("role") != 3)            
+            return "error";         
+        Integer ID = courseIn.getID();
+        int units = courseIn.getUnits();    
+        int preCourse = courseIn.getPreCourse();
+        int courseTerm = courseIn.getCourseTerm();
+        int courseMager = courseIn.getCourseMager();
+        int coursesection = courseIn.getCoursesection();
+        int labtheorytype = courseIn.getLabtheorytype();
+        int coursetype = courseIn.getCoursetype();
+        int coursegender = courseIn.getCoursegender();
+        
+        courseManagerImpl.updateCourse(ID,units,preCourse,courseTerm
+                ,courseMager,coursesection,labtheorytype,coursetype,coursegender);
+        return helperMethod(request);     
+    } 
 }

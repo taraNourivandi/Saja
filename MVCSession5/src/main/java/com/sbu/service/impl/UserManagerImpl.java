@@ -9,11 +9,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.sbu.dao.impl.UserDAOImpl;
 import com.sbu.dao.model.User;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class UserManagerImpl /*implements UserManager*/ {
 
-    private ArrayList<ArrayList<String>> rolesAccess = new ArrayList<>();    
+    private ArrayList<HashMap> rolesAccess = new ArrayList<>();    
+    
     /*
     1 student  ->0
     2 teacher  ->1
@@ -22,6 +25,7 @@ public class UserManagerImpl /*implements UserManager*/ {
     
     public UserManagerImpl() 
     {
+        /*
         rolesAccess = new ArrayList<>(); 
         //student
         ArrayList<String> list = new ArrayList<String>();
@@ -42,6 +46,29 @@ public class UserManagerImpl /*implements UserManager*/ {
         list.add("مشاهده دروس ارائه شده در هر ترم");
         list.add("تغییر مشخصات");
         rolesAccess.add(list);       
+        */
+        rolesAccess = new ArrayList<>();
+        //student        
+        HashMap<String,String> hashList = new HashMap<String,String>();
+        hashList.put("مشاهده نمرات", "");
+        hashList.put("انتخاب واحد", "");
+        hashList.put("تغییر مشخصات", "changePassword");
+        rolesAccess.add(hashList);
+        //prof
+        hashList = new HashMap<String,String>();
+        hashList.put("مشاهده دروس", "");
+        hashList.put("ثبت نمره", "");
+        hashList.put("تغییر مشخصات", "prof/changePassword");
+        rolesAccess.add(hashList);
+        //modir
+        hashList = new HashMap<String,String>();
+        hashList.put("تعریف/تغییر درس", "maneger/def_change_course");
+        hashList.put("تعریف/تغییر ترم", "");
+        hashList.put("مشاهده دروس ارائه شده در هر ترم", "");
+        hashList.put("تغییر مشخصات", "changePassword");
+        rolesAccess.add(hashList);
+        
+        
     }
 
     @Autowired
@@ -72,7 +99,7 @@ public class UserManagerImpl /*implements UserManager*/ {
      else 
             return null;       
     } 
-    public ArrayList<String> getRoleList (int role)
+    public HashMap getRoleList (int role)
     {
         if(role<1 || role>3)
             return null;

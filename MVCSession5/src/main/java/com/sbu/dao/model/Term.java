@@ -47,8 +47,8 @@ public class Term implements Serializable {
     private String name;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "termid")
     private Collection<Courseprofterm> courseproftermCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "termid")
-    private Collection<Average> averageCollection;
+    //@OneToMany(cascade = CascadeType.ALL, mappedBy = "termid")
+    //private Collection<Average> averageCollection;
 
     public Term() {
     }
@@ -86,7 +86,7 @@ public class Term implements Serializable {
     public void setCourseproftermCollection(Collection<Courseprofterm> courseproftermCollection) {
         this.courseproftermCollection = courseproftermCollection;
     }
-
+/*
     @XmlTransient
     public Collection<Average> getAverageCollection() {
         return averageCollection;
@@ -95,7 +95,7 @@ public class Term implements Serializable {
     public void setAverageCollection(Collection<Average> averageCollection) {
         this.averageCollection = averageCollection;
     }
-
+*/
     @Override
     public int hashCode() {
         int hash = 0;

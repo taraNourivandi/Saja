@@ -63,15 +63,18 @@ public class Courseprofterm implements Serializable {
     @NotNull
     @Column(name = "CAPASITY")
     private int capasity;
+    
     @JoinColumn(name = "COURSEID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Course courseid;
+    
     @JoinColumn(name = "PROFID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Prof profid;
     @JoinColumn(name = "TERMID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Term termid;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "courseproftermid")
     private Collection<Stdgrade> stdgradeCollection;
 

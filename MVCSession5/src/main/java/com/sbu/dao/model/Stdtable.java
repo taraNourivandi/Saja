@@ -14,6 +14,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -37,7 +39,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Stdtable.findByGender", query = "SELECT s FROM Stdtable s WHERE s.gender = :gender")
     , @NamedQuery(name = "Stdtable.findByEmail", query = "SELECT s FROM Stdtable s WHERE s.email = :email")
     , @NamedQuery(name = "Stdtable.findByPassedunit", query = "SELECT s FROM Stdtable s WHERE s.passedunit = :passedunit")
-    , @NamedQuery(name = "Stdtable.findByMajor", query = "SELECT s FROM Stdtable s WHERE s.major = :major")
     , @NamedQuery(name = "Stdtable.findBySection", query = "SELECT s FROM Stdtable s WHERE s.section = :section")
     , @NamedQuery(name = "Stdtable.findByDep", query = "SELECT s FROM Stdtable s WHERE s.dep = :dep")})
 public class Stdtable implements Serializable {
@@ -69,11 +70,6 @@ public class Stdtable implements Serializable {
     private int passedunit;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "MAJOR")
-    private String major;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "SECTION")
     private int section;
     @Basic(optional = false)
@@ -83,8 +79,13 @@ public class Stdtable implements Serializable {
     private String dep;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "stdid")
     private Collection<Stdgrade> stdgradeCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stdid")
-    private Collection<Average> averageCollection;
+    
+    //@OneToMany(cascade = CascadeType.ALL, mappedBy = "stdid")
+    //private Collection<Average> averageCollection;
+    
+    @JoinColumn(name = "MAJOR", referencedColumnName = "ID")
+    @ManyToOne(optional = false)
+    private Major major;
 
     public Stdtable() {
     }
@@ -93,13 +94,12 @@ public class Stdtable implements Serializable {
         this.id = id;
     }
 
-    public Stdtable(Integer id, String name, int gender, String email, int passedunit, String major, int section, String dep) {
+    public Stdtable(Integer id, String name, int gender, String email, int passedunit, int section, String dep) {
         this.id = id;
         this.name = name;
         this.gender = gender;
         this.email = email;
         this.passedunit = passedunit;
-        this.major = major;
         this.section = section;
         this.dep = dep;
     }
@@ -144,14 +144,6 @@ public class Stdtable implements Serializable {
         this.passedunit = passedunit;
     }
 
-    public String getMajor() {
-        return major;
-    }
-
-    public void setMajor(String major) {
-        this.major = major;
-    }
-
     public int getSection() {
         return section;
     }
@@ -176,7 +168,7 @@ public class Stdtable implements Serializable {
     public void setStdgradeCollection(Collection<Stdgrade> stdgradeCollection) {
         this.stdgradeCollection = stdgradeCollection;
     }
-
+/*
     @XmlTransient
     public Collection<Average> getAverageCollection() {
         return averageCollection;
@@ -184,6 +176,14 @@ public class Stdtable implements Serializable {
 
     public void setAverageCollection(Collection<Average> averageCollection) {
         this.averageCollection = averageCollection;
+    }
+*/
+    public Major getMajor() {
+        return major;
+    }
+
+    public void setMajor(Major major) {
+        this.major = major;
     }
 
     @Override

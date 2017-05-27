@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <!--<base href="enter base url here">-->
+    <title>سجا - سیستم جامع آموزش</title>
+    <link rel="icon" href="assets/img/favicon.png" type="image/png" sizes="32x32">
+    <meta name="description" content="سجا - سیستم جامع آموزش">
+    <meta name="keywords" content="سجا,آموزش,جامع,سیستم">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link type="text/css" rel="stylesheet" href="assets/css/materialize.min.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="assets/css/materialize_rtl.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="assets/css/admin_styles.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/material-icons.css">
+</head>
+<body>
+<!--main hedader-->
+<header>
+    <!--top-header-->
+    <nav class="top-header">
+        <div class="container">
+            <div class="nav-wrapper ">
+                <a href="#" class="brand-logo right">
+                    <h1 class="hide">سجاد سیستم جامع آموزش</h1>
+                    <img class="responsive-img" src="assets/img/saja_logo.png" alt="سجا">
+                </a>
+                <a class="page-title right hide-on-med-and-down">سیستم جامع آموزش</a>
+                <!--nav-mobile menu button-->
+                <a href="#" id="nav-mobile-button" data-activates="nav-mobile"
+                   class="button-collapse  hide-on-large-only left"><i class="material-icons">menu</i>
+                </a>
+                <!--//nav-mobile menu button-->
+            </div>
+        </div>
+    </nav>
+    <!--//top-header-->
+
+    <!--sidebar-->
+    <ul id="nav-mobile" class="side-nav right fixed">
+        <li class="user-profile valign-wrapper">
+            <!--<img src="assets/img/photo_2017-03-27_09-55-25.jpg" alt="عکس کاربر" class="circle responsive-img">-->
+            <i class="material-icons medium">face</i>
+            <p>رامک قوامی زاده</p>
+
+            <a href=main.html>
+                <i class="material-icons tooltipped" data-position="bottom" data-delay="50"
+                   data-tooltip="خروج از سیستم">power_settings_new</i>
+            </a>
+        </li>
+        <li class="right-align">
+            <ul class="collapsible collapsible-accordion">
+                <li class="bold">
+                    <a href="modir-term.html" class="collapsible-header waves-effect waves-teal">تعریف/تغییر ترم</a>
+                </li>
+                <li class="bold">
+                    <a href="modir-view.html" class="collapsible-header waves-effect waves-teal">مشاهده دروس ارائه شده در هر ترم</a>
+                </li>
+                <li class="bold">
+                    <a href="modir-change.html" class="collapsible-header waves-effect waves-teal">تغییر مشخصات</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <!--//sidebar-->
+
+</header>
+<!--//main header-->
+<main>
+    <!--main-content-->
+    <div class="container" >
+        <ul id="tabs-swipe-demo2" class="tabs">
+            <li class="tab col s6"><a href="#add-course">تعریف درس جدید</a></li>
+            <li class="tab col s6"><a href="#change-course">تغییر درس</a></li>
+        </ul>
+
+        <div id="add-course" class="col s12">
+            <div class="row">
+                <form method="POST" action="home">
+                    <div class="col s6">
+                        <div class="row">
+                            <div class="input-field">
+                                <input id="input_course_name" name="name" type="text" data-length="10" required>
+                                <label for="input_course_name">نام درس</label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col s6">
+                            
+                                <div class="input-field col s6">
+                                    <input id="input_course_id" name="ID" type="number" data-length="10" required>
+                                    <label for="input_course_id">کد درس</label>
+                                </div>
+                           
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s6">
+                            
+                                <div class="input-field col s6">
+                                    <input id="input_text2" name="units" type="number" data-length="1" required>
+                                    <label for="input_text2">تعداد واحد</label>
+                                </div>
+                            
+                        </div>
+                    </div>
+
+
+
+                    <div class="row">
+
+
+
+
+                    <div class="col s6">
+                            <label>مقطع:</label>
+                            <select name="coursesection" class="browser-default" required>
+                                <option value="" disabled selected>انتخاب...</option>
+                                <option value="1">کارشناسی</option>
+                                <option value="2">کارشناسی ارشد</option>
+                                <option value="3">دکترا</option>
+                                <option value="4">مجازی</option>
+                            </select>
+                        </div>
+
+
+
+                        <div class="col s6">
+                            <label >درس پیش نیاز:</label>
+                            <select name="preCourse" class="browser-default" required>
+                                <option value="" disabled selected>انتخاب...</option>
+                                <option value="1">عدم وجود درس پیش نیاز</option>
+                                <option value="2">شبکه های کامپیوتری</option>
+                                <option value="3">الگوریتم</option>
+                                <option value="4">ساختمان داده</option>
+                                <option value="5">برنامه نویسی پیشرفته</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col s6">
+                            <label>مجاز برای ترم:</label>
+                            <select name="courseTerm" class="browser-default" required>
+                                <option value="" disabled selected>انتخاب...</option>
+                                <option value="1">ترم اول به بالا</option>
+                                <option value="2">ترم دوم به بالا</option>
+                                <option value="3">ترم سوم به بالا</option>
+                                <option value="4">ترم چهارم به بالا</option>
+                                <option value="5">ترم پنجم به بالا</option>
+                                <option value="6">ترم ششم به بالا</option>
+                                <option value="7">ترم هفتم به بالا</option>
+                                <option value="8">ترم هشتم به بالا</option>
+                            </select>
+                        </div>
+
+
+                        <div class="col s6">
+                            <label>مجاز برای رشته و گرایش:</label>
+                            <select name="courseMager" class="browser-default" required>
+                                <option value="" disabled selected>انتخاب...</option>
+                                <option value="1">مهندسی کامپیوتر گرایش نرم افزار</option>
+                                <option value="2">مهندسی کامپیوتر گرایش سخت افزار</option>
+                                <option value="3">معماری سامانه های کامیوتری</option>
+                                <option value="4">فناوری اطلاعات</option>
+                                <option value="5">نرم افزار و سیستم های اطلاعاتی</option>
+                                <option value="6">هوش مصنوعی</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    
+
+                          <div class="row">
+                         <div class="col s6">
+                            <label>نوع درس به صورت عام:</label>
+                            <select name="coursetype" class="browser-default" required>
+                                <option value="" disabled selected>انتخاب...</option>
+                                <option value="11">اصلی</option>
+                                <option value="12">پایه</option>
+                                <option value="13">اختیاری</option>
+                            </select>
+                        </div>
+
+
+
+<div class="col s6">
+                            <label>نوع درس(آزمایشگاهی بودن):</label>
+                            <select name="labtheorytype" class="browser-default" required>
+                                <option value="" disabled selected>انتخاب...</option>
+                                <option value="11">عملی</option>
+                                <option value="12">نظری</option>
+                                
+                            </select>
+                        </div>
+
+
+
+                       
+                    </div>
+
+                    <div class="row">
+                        <div class="col s6">
+                            <label>جنسیت مجاز:</label>
+                            
+                                
+                                    <SELECT name="coursegender" class="browser-default" required >
+                                    <option value="" disabled selected>انتخاب...</option>
+                                    <option value="11">مختلط</option>
+                                    <option value="12">زن</option>
+                                    <option value="13"> مرد</option>
+
+                                    
+                                    </SELECT>
+
+
+                                    
+
+                                
+                            
+                        </div>
+                    </div>
+                    <button class="btn-floating btn-large waves-effect waves-light green"
+                type="submit" name="action">
+          
+          <i class="material-icons right">done</i>
+          </button>
+
+          <a href="modir-home.html" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">not_interested</i></a>
+                   
+
+					
+               		</form>
+            </div>
+
+            
+        </div>
+		
+        <!--end of the "add_course" -->
+
+        <div id="change-course" class="col s12" >
+            <div class="row">
+                <form method="POST" action="home">
+                    <div class="row">
+                        <div class="col s6">
+                            <label>نام درس</label>
+                            <select name="name" class="browser-default" required="">
+                                <option value="" disabled selected>انتخاب...</option>
+                                <option value="11">مهندسی اینترنت</option>
+                                <option value="12">مهندسی نرم افزار1</option>
+                                <option value="13">شبکه های کامپیوتری</option>
+                            </select>
+                        </div>
+
+                        <div class="input-field col s6">
+                                    <input name="units" id="input_text21" type="number" data-length="1" required>
+                                    <label for="input_text21">تعداد واحد</label>
+                                </div>
+                    </div>
+
+
+                    <div class="row">
+
+                     
+<div class="col s6">
+                            <label>مقطع:</label>
+                            <select name="coursesection" class="browser-default" required>
+                                <option value="" disabled selected>انتخاب...</option>
+                                <option value="1">کارشناسی</option>
+                                <option value="2">کارشناسی ارشد</option>
+                                <option value="3">دکترا</option>
+                                <option value="4">مجازی</option>
+                            </select>
+                        </div>
+
+                        <div class="col s6">
+                            <label>درس پیش نیاز:</label>
+                            <select name="preCourse" class="browser-default" required>
+                                <option value="" disabled selected>انتخاب...</option>
+                                
+                                <option value="1">عدم وجود درس پیش نیاز</option>
+                                <option value="2">شبکه های کامپیوتری</option>
+                                <option value="3">الگوریتم</option>
+                                <option value="4">ساختمان داده</option>
+                                <option value="5">برنامه نویسی پیشرفته</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s6">
+                            <label>مجاز برای ترم:</label>
+                            <select name="courseTerm" class="browser-default" required>
+                                <option value="" disabled selected>انتخاب...</option>
+                                <option value="1">ترم اول به بالا</option>
+                                <option value="2">ترم دوم به بالا</option>
+                                <option value="3">ترم سوم به بالا</option>
+                                <option value="4">ترم چهارم به بالا</option>
+                                <option value="5">ترم پنجم به بالا</option>
+                                <option value="6">ترم ششم به بالا</option>
+                                <option value="7">ترم هفتم به بالا</option>
+                                <option value="8">ترم هشتم به بالا</option>
+                            </select>
+                        </div>
+
+
+                        <div class="col s6">
+                            <label>مجاز برای رشته و گرایش:</label>
+                            <select name="courseMager" class="browser-default" required>
+                                <option value="" disabled selected>انتخاب...</option>
+                                <option value="1">مهندسی کامپیوتر گرایش نرم افزار</option>
+                                <option value="2">مهندسی کامپیوتر گرایش سخت افزار</option>
+                                <option value="3">معماری سامانه های کامیوتری</option>
+                                <option value="4">فناوری اطلاعات</option>
+                                <option value="5">نرم افزار و سیستم های اطلاعاتی</option>
+                                <option value="6">هوش مصنوعی</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                       
+                    </div>
+
+
+
+
+
+                       
+                    
+
+
+
+                    <div class="row">
+                         <div class="col s6">
+                            <label>نوع درس به صورت عام:</label>
+                            <select name="coursetype" class="browser-default" required>
+                                <option value="" disabled selected>انتخاب...</option>
+                                <option value="11">اصلی</option>
+                                <option value="12">پایه</option>
+                                <option value="13">اختیاری</option>
+                            </select>
+                        </div>
+
+
+
+<div class="col s6">
+                            <label>نوع درس(آزمایشگاهی بودن):</label>
+                            <select name="labtheorytype" class="browser-default" required>
+                                <option value="" disabled selected>انتخاب...</option>
+                                <option value="11">عملی</option>
+                                <option value="12">نظری</option>
+                                
+                            </select>
+                        </div>
+
+
+
+                       
+                    </div>
+
+                    <div class="row">
+                        <div class="col s6">
+                            <label>جنسیت مجاز:</label>
+                            
+                                
+                                    <SELECT name="coursegender" class="browser-default" required >
+                                    <option value="" disabled selected>انتخاب...</option>
+                                    <option value="11">مختلط</option>
+                                    <option value="12">زن</option>
+                                    <option value="13"> مرد</option>
+
+                                    
+                                    </SELECT>
+
+
+                                    
+
+                                
+                            
+                        </div>
+                    </div>
+                    <button class="btn-floating btn-large waves-effect waves-light green"
+                type="submit" name="action">
+          
+          <i class="material-icons right">done</i>
+          </button>
+
+          <a href="modir-home.html" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">not_interested</i></a>
+                   
+
+                </form>
+                 
+            </div>
+      </div>
+
+    </div>
+
+
+    <!--//main-content-->
+
+    <!--user-profile-modal structure-->
+    <div id="user-profile-modal" class="modal">
+        <div class="modal-content">
+            <h4>ویرایش تنظیمات کاربر</h4>
+            <p>تنظیمات کاربر را ویرایش کنید</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="modal-action waves-effect waves-green btn-flat"><i class="material-icons right">done</i>ثبت
+                تغییرات</a>
+            <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat"><i
+                    class="material-icons right">close</i>انصراف</a>
+        </div>
+    </div>
+    <!--//user-profile-modal structure-->
+</main>
+<footer class="page-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            تمامی حقوق نزد گروه سجا محفوظ است ۱۳۹۶ ©
+        </div>
+    </div>
+</footer>
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/materialize.min.js"></script>
+<script type="text/javascript" src="assets/js/scripts.js"></script>
+</body>
+</html>

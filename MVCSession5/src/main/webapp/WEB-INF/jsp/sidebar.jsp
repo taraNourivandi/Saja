@@ -4,9 +4,15 @@
     Author     : Fatemeh-pc
 --%>
 
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.Set"%>
+<%@page import="java.util.HashSet"%>
+<%@page import="java.util.HashMap"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<% ArrayList<String> listItem = (ArrayList)session.getAttribute("listItem");
+<% 
+   HashMap listItem = (HashMap)session.getAttribute("listItem");
    String name = (String)session.getAttribute("name");
 %>
 <!DOCTYPE html>
@@ -23,7 +29,7 @@
             <i class="material-icons medium">face</i>
             <p><%=name%></p>
 
-            <a href=logout>
+            <a href="logout">
                 <i class="material-icons tooltipped" data-position="bottom" data-delay="50"
                    data-tooltip="خروج از سیستم">power_settings_new</i>
             </a>
@@ -31,10 +37,14 @@
         <li class="right-align">
             <ul class="collapsible collapsible-accordion">
                 <% 
-                    for (String item: listItem){
+                    Set <String> keySet = listItem.keySet();
+                                   
+                    for (Iterator i = keySet.iterator() ; i.hasNext() ;){
+                        String item = (String) i.next();
+                        String ref = (String) listItem.get(item) ; 
                     %>
                 <li class="bold">
-                    <a href="modir-term.html" class="collapsible-header waves-effect waves-teal"><%=item%></a>
+                    <a href="<%=ref%>" class="collapsible-header waves-effect waves-teal"><%=item%></a>
                 </li>
                 <%}%>
             </ul>

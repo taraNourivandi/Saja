@@ -4,9 +4,20 @@
     Author     : Fatemeh-pc
 --%>
 
+<%@page import="com.sbu.dao.model.Major"%>
+<%@page import="com.sbu.dao.model.Term"%>
+<%@page import="com.sbu.dao.model.Course"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<% 
+    List<Course>allCourses = (List<Course>) request.getAttribute("courses");
+    List<Term>allTerms = (List<Term>) request.getAttribute("terms");
+    List<Major>allMajors = (List<Major>) request.getAttribute("majors");
+    List<String>sections = (List<String>) request.getAttribute("section");
+    List<String>courseType = (List<String>) request.getAttribute("courseType");
+    List<String>courseTypeLab = (List<String>) request.getAttribute("courseTypeLab");
+    List<String>courseGender = (List<String>) request.getAttribute("courseGender");
+%>
 <!DOCTYPE html>
 <html lang="fa">
 
@@ -47,220 +58,221 @@
 
         <div id="add-course" class="col s12">
             <div class="row">
-                <form>
+                <form method="POST" action="add_new_course">
                     <div class="col s6">
-                        <label>نام درس</label>
-                        <select class="browser-default">
-                            <option value="" disabled selected>انتخاب...</option>
-                            <option value="1">مهندسی اینترنت</option>
-                            <option value="2">مهندسی نرم افزار1</option>
-                            <option value="3">شبکه های کامپیوتری</option>
-                        </select>
-                    </div>
-
-
-                    <div class="row">
-                        <form class="col s6">
-                            <div class="row">
-                                <div class="input-field col s6">
-                                    <input id="input_text" type="number" data-length="10">
-                                    <label for="input_text">کد درس</label>
-                                </div>
+                        <div class="row">
+                            <div class="input-field">
+                                <input id="input_course_name" name="name" type="text" data-length="10" required>
+                                <label for="input_course_name">نام درس</label>
                             </div>
-                        </form>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col s6">
+                            
+                                <div class="input-field col s6">
+                                    <input id="input_course_id" name="ID" type="number" data-length="10" required>
+                                    <label for="input_course_id">کد درس</label>
+                                </div>
+                           
+                        </div>
                     </div>
 
                     <div class="row">
-                        <form class="col s6">
-                            <div class="row">
+                        <div class="col s6">
+                            
                                 <div class="input-field col s6">
-                                    <input id="input_text2" type="number" data-length="1">
+                                    <input id="input_text2" name="units" type="number" data-length="1" required>
                                     <label for="input_text2">تعداد واحد</label>
                                 </div>
-                            </div>
-                        </form>
+                            
+                        </div>
                     </div>
+
+
 
                     <div class="row">
-                        <div class="col s6">
-                            <label>درس پیش نیاز:</label>
-                            <select class="browser-default">
+                    <div class="col s6">
+                            <label>مقطع:</label>
+                            <select name="coursesection" class="browser-default" required>
                                 <option value="" disabled selected>انتخاب...</option>
-                                <option value="1">عدم وجود درس پیش نیاز</option>
-                                <option value="2">شبکه های کامپیوتری</option>
-                                <option value="3">الگوریتم</option>
-                                <option value="4">ساختمان داده</option>
-                                <option value="5">برنامه نویسی پیشرفته</option>
+                                <%  for (int idx = 0; idx < sections.size(); idx++) {
+                                        String elem = sections.get(idx);                                 
+                                %>
+                                    <option value="<%=idx+1%>"><%=elem%></option>
+                                            
+                                 <%}%>                                
                             </select>
                         </div>
 
 
+
                         <div class="col s6">
-                            <label>درس هم نیاز:</label>
-                            <select class="browser-default">
+                            <label >درس پیش نیاز:</label>
+                            <select name="preCourse" class="browser-default" required>
                                 <option value="" disabled selected>انتخاب...</option>
-                                <option value="1">عدم وجود درس هم نیاز</option>
-                                <option value="2">شبکه های کامپیوتری</option>
-                                <option value="3">الگوریتم</option>
-                                <option value="4">ساختمان داده</option>
-                                <option value="5">برنامه نویسی پیشرفته</option>
+                                <option value="-1">عدم وجود درس پیش نیاز</option>
+                                <%
+                                    for (Course course : allCourses) {                                
+                                %>
+                                <option value="<%=course.getId()%>"><%=course.getName()%> , <%=course.getId()%> </option>
+                                <%}%>
                             </select>
                         </div>
                     </div>
+
+
 
                     <div class="row">
                         <div class="col s6">
                             <label>مجاز برای ترم:</label>
-                            <select class="browser-default">
+                            <select name="courseTerm" class="browser-default" required>
                                 <option value="" disabled selected>انتخاب...</option>
-                                <option value="1">ترم اول به بالا</option>
-                                <option value="2">ترم دوم به بالا</option>
-                                <option value="3">ترم سوم به بالا</option>
-                                <option value="4">ترم چهارم به بالا</option>
-                                <option value="5">ترم پنجم به بالا</option>
-                                <option value="6">ترم ششم به بالا</option>
-                                <option value="7">ترم هفتم به بالا</option>
-                                <option value="8">ترم هشتم به بالا</option>
+                                <%
+                                    for (Term term : allTerms) {                                
+                                %>
+                                <option value="<%=term.getId()%>"> <%=term.getName()%> </option>
+                                <%}%>
                             </select>
                         </div>
 
 
                         <div class="col s6">
                             <label>مجاز برای رشته و گرایش:</label>
-                            <select class="browser-default">
+                            <select name="courseMager" class="browser-default" required>
                                 <option value="" disabled selected>انتخاب...</option>
-                                <option value="1">مهندسی کامپیوتر گرایش نرم افزار</option>
-                                <option value="2">مهندسی کامپیوتر گرایش سخت افزار</option>
-                                <option value="3">معماری سامانه های کامیوتری</option>
-                                <option value="4">فناوری اطلاعات</option>
-                                <option value="5">نرم افزار و سیستم های اطلاعاتی</option>
-                                <option value="6">هوش مصنوعی</option>
+                                <%
+                                    for (Major major : allMajors) {                                
+                                %>
+                                <option value="<%=major.getId()%>"> <%=major.getMajor()%> </option>
+                                <%}%>                                
                             </select>
                         </div>
-                    </div>
+                    </div>                    
 
-
-                    <div class="row">
-                        <div class="col s6">
-                            <label>مقطع:</label>
-                            <select class="browser-default">
-                                <option value="" disabled selected>انتخاب...</option>
-                                <option value="1">کارشناسی</option>
-                                <option value="2">کارشناسی ارشد</option>
-                                <option value="3">دکترا</option>
-                                <option value="4">مجازی</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col s6">
+                        <div class="row">
+                         <div class="col s6">
                             <label>نوع درس به صورت عام:</label>
-                            <form action="#" >
-                                <p>
-                                    <input name="group2" type="radio" id="test3" />
-                                    <label for="test3">اصلی</label>
-
-                                    <input name="group2" type="radio" id="test4" />
-                                    <label for="test4">پایه</label>
-
-                                    <input name="group2" type="radio" id="test5" />
-                                    <label for="test5">اختیاری</label>
-                                </p>
-                            </form>
+                            <select name="coursetype" class="browser-default" required>
+                                <option value="" disabled selected>انتخاب...</option>
+                                <%
+                                    for (String type : courseType) {                                
+                                %>
+                                <option value="<%=type%>"> <%=type%> </option>
+                                <%}%>                                
+                            </select>
                         </div>
 
-                        <div class="col s6">
+
+
+<div class="col s6">
                             <label>نوع درس(آزمایشگاهی بودن):</label>
-                            <form action="#" >
-                                <p>
-                                    <input name="group1" type="radio" id="test1" />
-                                    <label for="test1">عملی</label>
-
-                                    <input name="group1" type="radio" id="test2" />
-                                    <label for="test2">نظری</label>
-                                </p>
-                            </form>
+                            <select name="labtheorytype" class="browser-default" required>
+                                <option value="" disabled selected>انتخاب...</option>
+                                <%
+                                    for (String typeLab : courseTypeLab) {                                
+                                %>
+                                <option value="<%=typeLab%>"> <%=typeLab%> </option>      
+                                 <%}%>
+                            </select>
                         </div>
+
+
+
+                       
                     </div>
 
                     <div class="row">
                         <div class="col s6">
                             <label>جنسیت مجاز:</label>
-                            <form action="#" >
-                                <p>
-                                    <input name="group3" type="radio" id="test8" />
-                                    <label for="test8">مختلط</label>
+                            
+                                
+                                    <SELECT name="coursegender" class="browser-default" required >
+                                    <option value="" disabled selected>انتخاب...</option>
+                                    <%
+                                    for (String gender : courseGender) {                                
+                                    %>
+                                    <option value="<%=gender%>"> <%=gender%> </option>  
+                                     <%}%>
+                                    </SELECT>
 
-                                    <input name="group3" type="radio" id="test6" />
-                                    <label for="test6">زن</label>
 
+                                    
 
-                                    <input name="group3" type="radio" id="test7" />
-                                    <label for="test7">مرد</label>
-
-                                </p>
-                            </form>
+                                
+                            
                         </div>
                     </div>
-                </form>
+                    <button class="btn-floating btn-large waves-effect waves-light green"
+                type="submit" name="action">
+          
+          <i class="material-icons right">done</i>
+          </button>
+
+          <a href="modir-home.html" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">not_interested</i></a>
+                   
+
+					
+               		</form>
             </div>
 
-            <a href="modir-course.html" class="btn-floating btn-large waves-effect waves-light green"
-               onclick="Materialize.toast('ثبت با موفقیت انجام شد.', 10000)"><i class="material-icons">done_all</i></a>
-            <a href="modir-home.html" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">not_interested</i></a>
+            
         </div>
-        <!--end of the "add_course" -->
+		
+        <!--end of the "add_course"------------------------------------------------------------------------------------------ -->
 
         <div id="change-course" class="col s12" >
             <div class="row">
-                <form>
+                <form method="POST" action="change_course">
                     <div class="row">
                         <div class="col s6">
                             <label>نام درس</label>
-                            <select class="browser-default">
+                            <select name="ID" class="browser-default" required="">
                                 <option value="" disabled selected>انتخاب...</option>
-                                <option value="11">مهندسی اینترنت</option>
-                                <option value="12">مهندسی نرم افزار1</option>
-                                <option value="13">شبکه های کامپیوتری</option>
+                                <%
+                                    for (Course course : allCourses) {                                
+                                %>
+                                <option value="<%=course.getId()%>"><%=course.getName()%> , <%=course.getId()%> </option>
+                                <%}%>
                             </select>
                         </div>
-                    </div>
 
-                    <div class="row">
-                        <form class="col s6">
-                            <div class="row">
-                                <div class="input-field col s6">
-                                    <input id="input_text21" type="number" data-length="1">
+                        <div class="input-field col s6">
+                                    <input name="units" id="input_text21" type="number" data-length="1" required>
                                     <label for="input_text21">تعداد واحد</label>
                                 </div>
-                            </div>
-                        </form>
                     </div>
 
+
                     <div class="row">
-                        <div class="col s6">
-                            <label>درس پیش نیاز:</label>
-                            <select class="browser-default">
+
+                     
+<div class="col s6">
+                            <label>مقطع:</label>
+                            <select name="coursesection" class="browser-default" required>
                                 <option value="" disabled selected>انتخاب...</option>
-                                <option value="1">عدم وجود درس پیش نیاز</option>
-                                <option value="2">شبکه های کامپیوتری</option>
-                                <option value="3">الگوریتم</option>
-                                <option value="4">ساختمان داده</option>
-                                <option value="5">برنامه نویسی پیشرفته</option>
+                                <%  for (int idx = 0; idx < sections.size(); idx++) {
+                                        String elem = sections.get(idx);                                 
+                                %>
+                                    <option value="<%=idx+1%>"><%=elem%></option>
+                                            
+                                 <%}%>                                
                             </select>
                         </div>
 
-
                         <div class="col s6">
-                            <label>درس هم نیاز:</label>
-                            <select class="browser-default">
+                            <label>درس پیش نیاز:</label>
+                            <select name="preCourse" class="browser-default" required>
                                 <option value="" disabled selected>انتخاب...</option>
-                                <option value="1">عدم وجود درس هم نیاز</option>
-                                <option value="2">شبکه های کامپیوتری</option>
-                                <option value="3">الگوریتم</option>
-                                <option value="4">ساختمان داده</option>
-                                <option value="5">برنامه نویسی پیشرفته</option>
+                                
+                                <option value="1">عدم وجود درس پیش نیاز</option>
+                                <%
+                                    for (Course course : allCourses) {                                
+                                %>
+                                <option value="<%=course.getId()%>"><%=course.getName()%> , <%=course.getId()%> </option>
+                                <%}%>
                             </select>
                         </div>
                     </div>
@@ -268,108 +280,105 @@
                     <div class="row">
                         <div class="col s6">
                             <label>مجاز برای ترم:</label>
-                            <select class="browser-default">
+                            <select name="courseTerm" class="browser-default" required>
                                 <option value="" disabled selected>انتخاب...</option>
-                                <option value="1">ترم اول به بالا</option>
-                                <option value="2">ترم دوم به بالا</option>
-                                <option value="3">ترم سوم به بالا</option>
-                                <option value="4">ترم چهارم به بالا</option>
-                                <option value="5">ترم پنجم به بالا</option>
-                                <option value="6">ترم ششم به بالا</option>
-                                <option value="7">ترم هفتم به بالا</option>
-                                <option value="8">ترم هشتم به بالا</option>
+                                <%
+                                    for (Term term : allTerms) {                                
+                                %>
+                                <option value="<%=term.getId()%>"> <%=term.getName()%> </option>
+                                <%}%>
                             </select>
                         </div>
 
 
                         <div class="col s6">
                             <label>مجاز برای رشته و گرایش:</label>
-                            <select class="browser-default">
+                            <select name="courseMager" class="browser-default" required>
                                 <option value="" disabled selected>انتخاب...</option>
-                                <option value="1">مهندسی کامپیوتر گرایش نرم افزار</option>
-                                <option value="2">مهندسی کامپیوتر گرایش سخت افزار</option>
-                                <option value="3">معماری سامانه های کامیوتری</option>
-                                <option value="4">فناوری اطلاعات</option>
-                                <option value="5">نرم افزار و سیستم های اطلاعاتی</option>
-                                <option value="6">هوش مصنوعی</option>
+                               <%
+                                    for (Major major : allMajors) {                                
+                                %>
+                                <option value="<%=major.getId()%>"> <%=major.getMajor()%> </option>
+                                <%}%>  
                             </select>
                         </div>
                     </div>
 
 
                     <div class="row">
-                        <div class="col s6">
-                            <label>مقطع:</label>
-                            <select class="browser-default">
-                                <option value="" disabled selected>انتخاب...</option>
-                                <option value="1">کارشناسی</option>
-                                <option value="2">کارشناسی ارشد</option>
-                                <option value="3">دکترا</option>
-                                <option value="4">مجازی</option>
-                            </select>
-                        </div>
-                    </div>
+                       
+                    </div>                 
+                    
+
+
 
                     <div class="row">
-                        <div class="col s6">
+                         <div class="col s6">
                             <label>نوع درس به صورت عام:</label>
-                            <form action="#" >
-                                <p>
-                                    <input name="group21" type="radio" id="test31" />
-                                    <label for="test31">اصلی</label>
-
-                                    <input name="group21" type="radio" id="test41" />
-                                    <label for="test41">پایه</label>
-
-                                    <input name="group21" type="radio" id="test51" />
-                                    <label for="test51">اختیاری</label>
-                                </p>
-                            </form>
+                            <select name="coursetype" class="browser-default" required>
+                                <option value="" disabled selected>انتخاب...</option>
+                                <%
+                                    for (String type : courseType) {                                
+                                %>
+                                <option value="<%=type%>"> <%=type%> </option>
+                                <%}%>                                
+                            </select>
                         </div>
 
-                        <div class="col s6">
+
+
+<div class="col s6">
                             <label>نوع درس(آزمایشگاهی بودن):</label>
-                            <form action="#" >
-                                <p>
-                                    <input name="group11" type="radio" id="test11" />
-                                    <label for="test11">عملی</label>
-
-                                    <input name="group11" type="radio" id="test21" />
-                                    <label for="test21">نظری</label>
-                                </p>
-                            </form>
+                            <select name="labtheorytype" class="browser-default" required>
+                                <option value="" disabled selected>انتخاب...</option>
+                                <%
+                                    for (String typeLab : courseTypeLab) {                                
+                                %>
+                                <option value="<%=typeLab%>"> <%=typeLab%> </option>      
+                                 <%}%>
+                                
+                            </select>
                         </div>
+
+
+
+                       
                     </div>
 
                     <div class="row">
                         <div class="col s6">
                             <label>جنسیت مجاز:</label>
-                            <form action="#" >
-                                <p>
-                                    <input name="group31" type="radio" id="test81" />
-                                    <label for="test81">مختلط</label>
+                            
+                                
+                                    <SELECT name="coursegender" class="browser-default" required >
+                                    <option value="" disabled selected>انتخاب...</option>
+                                    <%
+                                    for (String gender : courseGender) {                                
+                                    %>
+                                    <option value="<%=gender%>"> <%=gender%> </option>  
+                                     <%}%>                                    
+                                    </SELECT>                                  
 
-                                    <input name="group31" type="radio" id="test61" />
-                                    <label for="test61">زن</label>
-
-
-                                    <input name="group31" type="radio" id="test71" />
-                                    <label for="test71">مرد</label>
-
-                                </p>
-                            </form>
+                                
+                            
                         </div>
                     </div>
+                    <button class="btn-floating btn-large waves-effect waves-light green"
+                type="submit" name="action">
+          
+          <i class="material-icons right">done</i>
+          </button>
 
-                    <a href="modir_course.html" class="btn-floating btn-large waves-effect waves-light green"
-                       onclick="Materialize.toast('ثبت با موفقیت انجام شد.', 10000)"><i class="material-icons">done_all</i></a>
+          <a href="modir-home.html" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">not_interested</i></a>
+                   
 
-                    <a href="modir-home.html" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">not_interested</i></a>
-                    
                 </form>
+                 
             </div>
-        </div>
+      </div>
+
     </div>
+
 
     <!--//main-content-->
 
@@ -387,7 +396,6 @@
         </div>
     </div>
     <!--//user-profile-modal structure-->
-
 </main>
 
 <%@ include file="footer.html" %>

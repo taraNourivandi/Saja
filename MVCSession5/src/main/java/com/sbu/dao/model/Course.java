@@ -17,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -76,15 +77,21 @@ public class Course implements Serializable {
     @NotNull
     @Column(name = "COURSESECTION")
     private int coursesection;
-    @JoinTable(name = "PRECOURSETABLE", joinColumns = {
-        @JoinColumn(name = "COURSEID", referencedColumnName = "ID")}, inverseJoinColumns = {
-        @JoinColumn(name = "PRECOURSEID", referencedColumnName = "ID")})
-    @ManyToMany
-    private Collection<Course> courseCollection;
-    @ManyToMany(mappedBy = "courseCollection")
-    private Collection<Course> courseCollection1;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "course")
-    private Allowed allowed;
+    
+    @Basic(optional = false)
+    @Column(name = "PRECOURSEID")
+    private int preCourseID;
+    
+    @JoinColumn(name = "TERMID", referencedColumnName = "ID")
+    @NotNull
+    @ManyToOne(optional = false)
+    private Term term;
+    
+    @JoinColumn(name = "MAJORID", referencedColumnName = "ID")
+    @NotNull
+    @ManyToOne(optional = false)
+    private Major major;
+  
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "courseid")
     private Collection<Courseprofterm> courseproftermCollection;
 
@@ -161,32 +168,31 @@ public class Course implements Serializable {
         this.coursesection = coursesection;
     }
 
-    @XmlTransient
-    public Collection<Course> getCourseCollection() {
-        return courseCollection;
+    public int getPreCourseID() {
+        return preCourseID;
     }
 
-    public void setCourseCollection(Collection<Course> courseCollection) {
-        this.courseCollection = courseCollection;
+    public void setPreCourseID(int preCourseID) {
+        this.preCourseID = preCourseID;
     }
 
-    @XmlTransient
-    public Collection<Course> getCourseCollection1() {
-        return courseCollection1;
+    public Term getTerm() {
+        return term;
     }
 
-    public void setCourseCollection1(Collection<Course> courseCollection1) {
-        this.courseCollection1 = courseCollection1;
+    public void setTerm(Term term) {
+        this.term = term;
     }
 
-    public Allowed getAllowed() {
-        return allowed;
+    public Major getMajor() {
+        return major;
     }
 
-    public void setAllowed(Allowed allowed) {
-        this.allowed = allowed;
+    public void setMajor(Major major) {
+        this.major = major;
     }
 
+    
     @XmlTransient
     public Collection<Courseprofterm> getCourseproftermCollection() {
         return courseproftermCollection;
