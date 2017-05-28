@@ -144,7 +144,7 @@ public class HomeController {
     
     
     //tara
-    @RequestMapping(value = {"/maneger/def_change_course"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/manager/def_change_course"}, method = RequestMethod.GET)
     public String createCourseDefPage (@ModelAttribute("SpringWeb")CourseIn courseIn, Model model,HttpServletRequest request, HttpServletResponse response) throws IOException 
     { 
         response.setContentType("text/html;charset=UTF-8");
@@ -172,7 +172,7 @@ public class HomeController {
         return "modir-course";
     }
     
-    @RequestMapping(value = {"/maneger/add_new_course"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/manager/add_new_course"}, method = RequestMethod.POST)
     public String createCoursePage (@ModelAttribute("SpringWeb")CourseIn courseIn, Model model,HttpServletRequest request, HttpServletResponse response) throws IOException 
     { 
         if((int)request.getSession().getAttribute("role") != 3)            
@@ -190,10 +190,11 @@ public class HomeController {
         
         courseManagerImpl.saveCourse(ID,name,units,preCourse,courseTerm
                 ,courseMager,coursesection,labtheorytype,coursetype,coursegender);
-        return helperMethod(request);     
+        response.sendRedirect("../manager");
+        return "home";
     }   
     
-    @RequestMapping(value = {"/maneger/edit_new_course"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/manager/change_course"}, method = RequestMethod.POST)
     public String editCoursePage (@ModelAttribute("SpringWeb")CourseIn courseIn, Model model,HttpServletRequest request, HttpServletResponse response) throws IOException 
     {
         if((int)request.getSession().getAttribute("role") != 3)            
@@ -208,8 +209,10 @@ public class HomeController {
         int coursetype = courseIn.getCoursetype();
         int coursegender = courseIn.getCoursegender();
         
+        System.out.println("change course: " +"units "+ units + " precourse" + preCourse );
         courseManagerImpl.updateCourse(ID,units,preCourse,courseTerm
                 ,courseMager,coursesection,labtheorytype,coursetype,coursegender);
-        return helperMethod(request);     
+        response.sendRedirect("../manager");
+        return "home";
     } 
 }

@@ -64,7 +64,7 @@ public class Courseprofterm implements Serializable {
     @Column(name = "CAPASITY")
     private int capasity;
     
-    @JoinColumn(name = "COURSEID", referencedColumnName = "ID")
+    @JoinColumn(name = "COURSEID", referencedColumnName = "IDCOURSE")
     @ManyToOne(optional = false)
     private Course courseid;
     
@@ -74,9 +74,9 @@ public class Courseprofterm implements Serializable {
     @JoinColumn(name = "TERMID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Term termid;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "courseproftermid")
-    private Collection<Stdgrade> stdgradeCollection;
+    //delete
+    //@OneToMany(cascade = CascadeType.ALL, mappedBy = "courseproftermid")
+    //private Collection<Stdgrade> stdgradeCollection;
 
     public Courseprofterm() {
     }
@@ -147,7 +147,7 @@ public class Courseprofterm implements Serializable {
     public void setTermid(Term termid) {
         this.termid = termid;
     }
-
+/*
     @XmlTransient
     public Collection<Stdgrade> getStdgradeCollection() {
         return stdgradeCollection;
@@ -156,7 +156,7 @@ public class Courseprofterm implements Serializable {
     public void setStdgradeCollection(Collection<Stdgrade> stdgradeCollection) {
         this.stdgradeCollection = stdgradeCollection;
     }
-
+*/
     @Override
     public int hashCode() {
         int hash = 0;

@@ -12,8 +12,11 @@ import javax.persistence.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sbu.dao.model.Course;
+import com.sbu.dao.model.Department;
+import com.sbu.dao.model.Employee;
 import com.sbu.dao.model.Major;
 import com.sbu.dao.model.Term;
+import com.sbu.dao.model.User;
 
 @Repository
 public class CourseDAOImpl /*implements UserDAO*/ {
@@ -28,7 +31,7 @@ public class CourseDAOImpl /*implements UserDAO*/ {
 
     //@Override
     @Transactional
-    public void insertUser(Course course) {
+    public void insertCouse(Course course) {
         //entityManager.getTransaction().begin();
         entityManager.persist(course);
         //entityManager.getTransaction().commit();
@@ -52,6 +55,11 @@ public class CourseDAOImpl /*implements UserDAO*/ {
         return entityManager.createQuery(cq).getResultList();        
     }
     
+    public Term findTerm(int id)
+    {
+        return entityManager.find(Term.class, id);
+    }
+    
     public List<Major> findAllMajor()
     {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
@@ -59,6 +67,11 @@ public class CourseDAOImpl /*implements UserDAO*/ {
         Root<Major> root = cq.from(Major.class);
         cq.select(root);
         return entityManager.createQuery(cq).getResultList();  
+    }
+    
+    public Major findMajor(int id)
+    {
+        return entityManager.find(Major.class, id);
     }
     
     public Course findCourse(int course) {
@@ -70,6 +83,21 @@ public class CourseDAOImpl /*implements UserDAO*/ {
         //entityManager.getTransaction().begin();
         entityManager.persist(course);
         //entityManager.getTransaction().commit();
+    }   
+    
+    @Transactional
+    public void inserEmp(Employee employee) {
+        //entityManager.getTransaction().begin();
+        entityManager.persist(employee);
+        //entityManager.getTransaction().commit();
+    }   
+    public Department findDep(int depId) {
+        return entityManager.find(Department.class, depId);//returns the department named vert
     }
+    @Transactional
+    public void updatecourse(Course course) {
+        entityManager.merge(course);
+    }
+    
 }
 

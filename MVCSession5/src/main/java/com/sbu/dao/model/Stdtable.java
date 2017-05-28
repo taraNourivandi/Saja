@@ -77,12 +77,12 @@ public class Stdtable implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "DEP")
     private String dep;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stdid")
-    private Collection<Stdgrade> stdgradeCollection;
+    //@OneToMany(cascade = CascadeType.ALL, mappedBy = "stdid")
+    //private Collection<Stdgrade> stdgradeCollection;
     
     //@OneToMany(cascade = CascadeType.ALL, mappedBy = "stdid")
     //private Collection<Average> averageCollection;
-    
+
     @JoinColumn(name = "MAJOR", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Major major;
@@ -159,7 +159,7 @@ public class Stdtable implements Serializable {
     public void setDep(String dep) {
         this.dep = dep;
     }
-
+/*
     @XmlTransient
     public Collection<Stdgrade> getStdgradeCollection() {
         return stdgradeCollection;
@@ -168,6 +168,7 @@ public class Stdtable implements Serializable {
     public void setStdgradeCollection(Collection<Stdgrade> stdgradeCollection) {
         this.stdgradeCollection = stdgradeCollection;
     }
+    */
 /*
     @XmlTransient
     public Collection<Average> getAverageCollection() {
@@ -177,7 +178,8 @@ public class Stdtable implements Serializable {
     public void setAverageCollection(Collection<Average> averageCollection) {
         this.averageCollection = averageCollection;
     }
-*/
+    
+  */
     public Major getMajor() {
         return major;
     }
@@ -185,6 +187,7 @@ public class Stdtable implements Serializable {
     public void setMajor(Major major) {
         this.major = major;
     }
+   
 
     @Override
     public int hashCode() {

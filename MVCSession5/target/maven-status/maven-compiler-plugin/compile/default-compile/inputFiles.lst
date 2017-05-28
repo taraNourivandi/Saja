@@ -5,6 +5,7 @@ C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\controller\WelcomeCon
 C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\service\impl\ManagerManagerImpl.java
 C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\service\StdManager.java
 C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\dao\model\Courseprofterm.java
+C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\dao\model\Employee.java
 C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\dao\model\User.java
 C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\controller\UserInsertController.java
 C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\service\impl\UserManagerImpl.java
@@ -13,7 +14,7 @@ C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\check_user_controler.java
 C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\dao\impl\CourseDAOImpl.java
 C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\dao\impl\UserDAOImpl.java
 C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\controller\model\CourseIn.java
-C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\dao\model\Average.java
+C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\dao\model\Department.java
 C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\dao\UserDAO.java
 C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\service\impl\CourseManagerImpl.java
 C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\service\UserManager.java
@@ -38,6 +39,7 @@ C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\dao\impl\StdDAOImpl.j
 C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\service\impl\ProfManagerImpl.java
 C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\dao\managerDAO.java
 C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\dao\model\Course.java
+C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\Test.java
 C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\controller\StudentController.java
 C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\controller\model\Student.java
 C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\dao\ProfDAO.java

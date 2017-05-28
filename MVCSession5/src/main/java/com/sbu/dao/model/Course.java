@@ -23,6 +23,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -45,186 +46,123 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Course.findByCoursegender", query = "SELECT c FROM Course c WHERE c.coursegender = :coursegender")
     , @NamedQuery(name = "Course.findByCoursesection", query = "SELECT c FROM Course c WHERE c.coursesection = :coursesection")})
 public class Course implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "ID")
-    private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "NAME")
-    private String name;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "UNITS")
-    private int units;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "LABTHEORYTYPE")
-    private int labtheorytype;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "COURSETYPE")
-    private int coursetype;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "COURSEGENDER")
-    private int coursegender;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "COURSESECTION")
-    private int coursesection;
     
-    @Basic(optional = false)
-    @Column(name = "PRECOURSEID")
+    @TableGenerator(name = "course_gen", table = "id_gen", pkColumnName = "gen_name", valueColumnName = "gen_val", allocationSize = 1)
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "course_gen")
+    private int idcourse;
+    private String name;
+    private int units;
+    private int labtheorytype;
+    private int coursetype;
+    private int coursegender;
+    private int coursesection;
     private int preCourseID;
     
-    @JoinColumn(name = "TERMID", referencedColumnName = "ID")
-    @NotNull
-    @ManyToOne(optional = false)
+    
+    @ManyToOne
+    @JoinColumn(name = "TERM", referencedColumnName = "ID")
     private Term term;
     
-    @JoinColumn(name = "MAJORID", referencedColumnName = "ID")
-    @NotNull
-    @ManyToOne(optional = false)
+    @ManyToOne
+    @JoinColumn(name = "MAJOR", referencedColumnName = "ID")
     private Major major;
-  
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "courseid")
-    private Collection<Courseprofterm> courseproftermCollection;
-
-    public Course() {
-    }
-
-    public Course(Integer id) {
-        this.id = id;
-    }
-
-    public Course(Integer id, String name, int units, int labtheorytype, int coursetype, int coursegender, int coursesection) {
-        this.id = id;
-        this.name = name;
-        this.units = units;
-        this.labtheorytype = labtheorytype;
-        this.coursetype = coursetype;
-        this.coursegender = coursegender;
-        this.coursesection = coursesection;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getUnits() {
-        return units;
-    }
-
-    public void setUnits(int units) {
-        this.units = units;
-    }
-
-    public int getLabtheorytype() {
-        return labtheorytype;
-    }
-
-    public void setLabtheorytype(int labtheorytype) {
-        this.labtheorytype = labtheorytype;
-    }
-
-    public int getCoursetype() {
-        return coursetype;
-    }
-
-    public void setCoursetype(int coursetype) {
-        this.coursetype = coursetype;
-    }
-
-    public int getCoursegender() {
-        return coursegender;
-    }
-
-    public void setCoursegender(int coursegender) {
-        this.coursegender = coursegender;
-    }
-
-    public int getCoursesection() {
-        return coursesection;
-    }
-
-    public void setCoursesection(int coursesection) {
-        this.coursesection = coursesection;
-    }
-
-    public int getPreCourseID() {
-        return preCourseID;
-    }
-
-    public void setPreCourseID(int preCourseID) {
-        this.preCourseID = preCourseID;
-    }
-
-    public Term getTerm() {
-        return term;
-    }
 
     public void setTerm(Term term) {
         this.term = term;
-    }
-
-    public Major getMajor() {
-        return major;
     }
 
     public void setMajor(Major major) {
         this.major = major;
     }
 
+    public Term getTerm() {
+        return term;
+    }
+
+    public Major getMajor() {
+        return major;
+    }
+
+    public Course() {
+    }
+
+    public Course(String name, int units, int labtheorytype, int coursetype, int coursegender, int coursesection, int preCourseID) {
+        this.idcourse = idcourse;
+        this.name = name;
+        this.units = units;
+        this.labtheorytype = labtheorytype;
+        this.coursetype = coursetype;
+        this.coursegender = coursegender;
+        this.coursesection = coursesection;
+        this.preCourseID = preCourseID;
+    }
     
-    @XmlTransient
-    public Collection<Courseprofterm> getCourseproftermCollection() {
-        return courseproftermCollection;
+    
+
+    public void setId(int idcourse) {
+        this.idcourse = idcourse;
     }
 
-    public void setCourseproftermCollection(Collection<Courseprofterm> courseproftermCollection) {
-        this.courseproftermCollection = courseproftermCollection;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+    public void setUnits(int units) {
+        this.units = units;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Course)) {
-            return false;
-        }
-        Course other = (Course) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+    public void setLabtheorytype(int labtheorytype) {
+        this.labtheorytype = labtheorytype;
     }
 
-    @Override
-    public String toString() {
-        return "com.sbu.dao.model.Course[ id=" + id + " ]";
+    public void setCoursetype(int coursetype) {
+        this.coursetype = coursetype;
     }
+
+    public void setCoursegender(int coursegender) {
+        this.coursegender = coursegender;
+    }
+
+    public void setCoursesection(int coursesection) {
+        this.coursesection = coursesection;
+    }
+
+    public void setPreCourseID(int preCourseID) {
+        this.preCourseID = preCourseID;
+    }
+
+    public int getId() {
+        return idcourse;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getUnits() {
+        return units;
+    }
+
+    public int getLabtheorytype() {
+        return labtheorytype;
+    }
+
+    public int getCoursetype() {
+        return coursetype;
+    }
+
+    public int getCoursegender() {
+        return coursegender;
+    }
+
+    public int getCoursesection() {
+        return coursesection;
+    }
+
+    public int getPreCourseID() {
+        return preCourseID;
+    }
+    
     
 }

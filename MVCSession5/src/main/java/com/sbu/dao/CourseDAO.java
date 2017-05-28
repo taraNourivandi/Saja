@@ -15,7 +15,10 @@ public interface CourseDAO
 	void insertUser(Course course);
 	List<Course> findAllCourses();  
         List<Term> findAllTerm();
+        Term findTerm(int id);
         List<Major> findAllMajor();
+        Major findMajor(int id);
         void insertcourse(Course course);
+        
         
 }

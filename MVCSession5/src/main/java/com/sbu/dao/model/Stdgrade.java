@@ -53,6 +53,7 @@ public class Stdgrade implements Serializable {
     @JoinColumn(name = "COURSEPROFTERMID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Courseprofterm courseproftermid;
+    
     @JoinColumn(name = "STDID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Stdtable stdid;
@@ -93,7 +94,7 @@ public class Stdgrade implements Serializable {
     public void setGradestatus(String gradestatus) {
         this.gradestatus = gradestatus;
     }
-
+/*
     public Courseprofterm getCourseproftermid() {
         return courseproftermid;
     }
@@ -101,7 +102,7 @@ public class Stdgrade implements Serializable {
     public void setCourseproftermid(Courseprofterm courseproftermid) {
         this.courseproftermid = courseproftermid;
     }
-
+*/
     public Stdtable getStdid() {
         return stdid;
     }

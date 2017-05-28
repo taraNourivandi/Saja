@@ -13,6 +13,7 @@ import com.sbu.dao.impl.CourseDAOImpl;
 import com.sbu.dao.model.Course;
 import com.sbu.dao.model.Major;
 import com.sbu.dao.model.Term;
+import com.sbu.dao.model.User;
 import java.util.Collection;
 import java.util.LinkedList;
 
@@ -25,12 +26,13 @@ public class CourseManagerImpl /*implements UserManager*/ {
 
     @Autowired
     public CourseDAOImpl courseDAOImpl;
-
+    
+    
     //@Override
     @Transactional
     public void insertCourse(Course course)
     {
-        courseDAOImpl.insertUser(course);              
+        courseDAOImpl.insertCouse(course);              
     }
 
     //@Override
@@ -73,6 +75,8 @@ public class CourseManagerImpl /*implements UserManager*/ {
         List<String> courseTypeLab = new LinkedList<String>();
         courseTypeLab.add("عملی");
         courseTypeLab.add("نظری");
+        //courseTypeLab.add("amali");
+        //courseTypeLab.add("nazari");
         return courseTypeLab;
     }
     
@@ -95,7 +99,14 @@ public class CourseManagerImpl /*implements UserManager*/ {
             int coursegender)
     {
         //check inputs
-        Course course = new Course();
+        Course course = new Course(name ,units , labtheorytype, coursetype, coursegender,coursesection , preCourse);
+        // Course(String name, int units, int labtheorytype, int coursetype, int coursegender, int coursesection, int preCourseID) {
+        Major major = courseDAOImpl.findMajor(courseMager);
+        course.setMajor(major);
+        Term term = courseDAOImpl.findTerm(courseTerm);
+        course.setTerm(term);
+        
+        courseDAOImpl.insertcourse(course);
         /*
         course.setId(ID);
         course.setName(name);
@@ -112,6 +123,7 @@ public class CourseManagerImpl /*implements UserManager*/ {
         courseDAOImpl.insertcourse(course);
         
         */
+        /*
         course.setId(8);
         course.setName("a");
         course.setUnits(3);
@@ -119,7 +131,9 @@ public class CourseManagerImpl /*implements UserManager*/ {
         course.setCoursesection(1);
         course.setCoursetype(2);
         course.setLabtheorytype(2);
-        courseDAOImpl.insertcourse(course);
+        */
+        //courseDAOImpl.insertuser(user);
+        
     }
     
     public void updateCourse(Integer ID, int units,
@@ -132,10 +146,10 @@ public class CourseManagerImpl /*implements UserManager*/ {
             int coursegender)
     {
         //check inputs
-        Course course = new Course();
-        /*
-        course.setId(ID);
-        course.setName(name);
+        Course course = courseDAOImpl.findCourse(ID);
+        System.out.println(" edited course found : " + course.getName());
+        //course.setId(ID);
+        //course.setName(name);
         course.setUnits(units);
         course.setCoursegender(coursegender);
         course.setCoursesection(coursesection);
@@ -143,12 +157,15 @@ public class CourseManagerImpl /*implements UserManager*/ {
         course.setLabtheorytype(labtheorytype);
         
 
-        Collection<Course> courseCollection = new LinkedList<>();
-        courseCollection.add(courseDAOImpl.findCourse(preCourse));
-        course.setCourseCollection(courseCollection);
-        courseDAOImpl.insertcourse(course);
+        Major major = courseDAOImpl.findMajor(courseMager);
+        course.setMajor(major);
+        Term term = courseDAOImpl.findTerm(courseTerm);
+        course.setTerm(term);
         
-        */
+        courseDAOImpl.updatecourse(course);
+        
+        
+        /*
         course.setId(8);
         course.setName("a");
         course.setUnits(3);
@@ -157,6 +174,7 @@ public class CourseManagerImpl /*implements UserManager*/ {
         course.setCoursetype(2);
         course.setLabtheorytype(2);
         courseDAOImpl.insertcourse(course);
+        */
     }
 /*
     public void updateCourse(Integer ID, int units, int preCourse, int courseTerm, int courseMager, int coursesection, int labtheorytype, int coursetype, int coursegender) {

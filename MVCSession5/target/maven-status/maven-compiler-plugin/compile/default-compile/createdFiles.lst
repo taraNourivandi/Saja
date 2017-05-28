@@ -1,5 +1,4 @@
 com\sbu\controller\model\Student.class
-com\sbu\dao\model\Average.class
 com\sbu\dao\impl\ProfDAOImpl.class
 com\sbu\dao\model\Major.class
 com\sbu\service\UserManager.class
@@ -9,6 +8,7 @@ com\sbu\dao\impl\StdDAOImpl.class
 com\sbu\service\ManagerManager.class
 main_controller.class
 com\sbu\dao\UserDAO.class
+Test.class
 com\sbu\service\CourseManager.class
 com\sbu\dao\ProfDAO.class
 com\sbu\controller\StudentController.class
@@ -20,6 +20,7 @@ com\sbu\service\ProfManager.class
 com\sbu\service\StdManager.class
 modir_course_controller.class
 com\sbu\service\impl\ManagerManagerImpl.class
+com\sbu\dao\model\Department.class
 com\sbu\service\impl\CourseManagerImpl.class
 com\sbu\controller\model\CourseIn.class
 com\sbu\service\impl\UserManagerImpl.class
@@ -38,6 +39,7 @@ com\sbu\dao\model\Prof.class
 com\sbu\dao\model\Modir.class
 com\sbu\dao\model\User.class
 prof_course_controler.class
+com\sbu\dao\model\Employee.class
 com\sbu\dao\model\Courseprofterm.class
 com\sbu\service\impl\StdManagerImpl.class
 com\sbu\dao\model\Term.class

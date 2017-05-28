@@ -2,12 +2,14 @@
 package com.sbu.controller;
 
 import com.sbu.dao.model.User;
+import com.sbu.service.impl.StdManagerImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Date;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/welcome")
 public class WelcomeController {
 
+    @Autowired
+    public StdManagerImpl stdManagerImpl;
     // Controller will always look for a default GET method to call first, irrespective of name
     // In this case, named welcome to ease identification
     @RequestMapping(method = RequestMethod.GET)
@@ -56,5 +60,12 @@ public class WelcomeController {
         // will be mapped to /WEB-INF/jsp/welcome.jsp
         return "user";
     }
+    @RequestMapping(value = "test", method = RequestMethod.GET)
+    // Method contains Model input to setup date object
+    public String coursetest() {
+        stdManagerImpl.testAddCourse();
+        return "error";
+    }
 
+    
 }

@@ -62,7 +62,7 @@ public class UserManagerImpl /*implements UserManager*/ {
         rolesAccess.add(hashList);
         //modir
         hashList = new HashMap<String,String>();
-        hashList.put("تعریف/تغییر درس", "maneger/def_change_course");
+        hashList.put("تعریف/تغییر درس", "manager/def_change_course");
         hashList.put("تعریف/تغییر ترم", "");
         hashList.put("مشاهده دروس ارائه شده در هر ترم", "");
         hashList.put("تغییر مشخصات", "changePassword");
