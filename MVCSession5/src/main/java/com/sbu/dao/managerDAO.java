@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 public interface managerDAO 
 {
     Modir findUser(int id);
+	 boolean updateEmail(int id, String email);
 }

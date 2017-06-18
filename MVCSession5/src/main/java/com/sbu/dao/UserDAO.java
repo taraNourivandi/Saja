@@ -12,5 +12,7 @@ public interface UserDAO {
 
 	List<User> findAllUsers();
         
-        User findUser(String userName);
+    User findUser(String userName);
+	
+	boolean updatePass (String username ,String pass);
 }

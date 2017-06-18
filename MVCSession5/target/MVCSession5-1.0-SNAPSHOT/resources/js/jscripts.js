@@ -86,5 +86,34 @@ $("#submit-btn").click(
 function() {
     createDynamicURL();
   });
+  
+  function checkChangesPass()
+{
+    console.log("in the function");
+    var pass = $("#pass_field").val();
+    var repeatPass = $("#repeatPass_field").val();
+    
+    
+    
+    if (pass != repeatPass)
+    {
+        $("#pass_field").removeClass("validate");
+        $("#pass_field").addClass("invalid");
+        $("#repeatPass_field").removeClass("validate");
+        $("#repeatPass_field").addClass("invalid");
+    }
+    else
+    {
+            console.log("in the correct pass;");
+        document.getElementById("change_form").submit();
+    }
+        
+}
+/*
+$("#submit_changes_field").click()(
+        function(){
+            checkChangesPass();
+        })
+*/
 
 

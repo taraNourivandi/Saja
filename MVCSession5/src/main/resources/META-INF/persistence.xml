@@ -12,8 +12,8 @@
         <class>com.sbu.dao.model.Course</class>
         <class>com.sbu.dao.model.Term</class>
         <class>com.sbu.dao.model.Major</class>
-        <class>com.sbu.dao.model.Allowed</class>
-        <class>com.sbu.dao.model.Avarage</class>
+<!--        <class>com.sbu.dao.model.Allowed</class>
+        <class>com.sbu.dao.model.Avarage</class>-->
         <class>com.sbu.dao.model.Courseprofterm</class>
         <class>com.sbu.dao.model.Stdgrade</class>
         
@@ -49,8 +49,8 @@
         <class>com.sbu.dao.model.Course</class>
         <class>com.sbu.dao.model.Term</class>
         <class>com.sbu.dao.model.Major</class>
-        <class>com.sbu.dao.model.Allowed</class>
-        <class>com.sbu.dao.model.Avarage</class>
+<!--        <class>com.sbu.dao.model.Allowed</class>
+        <class>com.sbu.dao.model.Avarage</class>-->
         <class>com.sbu.dao.model.Courseprofterm</class>
         <class>com.sbu.dao.model.Stdgrade</class>
         

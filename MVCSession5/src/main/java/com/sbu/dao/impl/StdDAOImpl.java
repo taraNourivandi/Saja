@@ -4,9 +4,10 @@ import com.sbu.dao.model.Stdtable;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class StdDAOImpl /*implements ProfDAO*/ {
@@ -24,5 +25,28 @@ public class StdDAOImpl /*implements ProfDAO*/ {
     {
         return entityManager.find(Stdtable.class, id);
     }
+@Transactional
+    public boolean updateEmail(int id, String email)
+    {
+        System.out.println("in the update Email method in ProfDAOImpl");
+        Query query = entityManager.createNamedQuery("prof.updateEmail");
+        query.setParameter("email", email);        
+        query.setParameter("id", id);
+        System.out.println(query.toString());
+        try
+        {
+            Object obj = query.executeUpdate();
+            System.out.println("update email succesfully");
+            return true;
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+            System.out.println("error in update the email /profDAOImpl");
+            System.out.println("update email UNNNNNNNNNNNNNsuccesfully");
+            return false;
+        }
+    }
 }
+
 

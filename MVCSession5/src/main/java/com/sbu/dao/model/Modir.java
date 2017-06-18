@@ -31,7 +31,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Modir.findById", query = "SELECT m FROM Modir m WHERE m.id = :id")
     , @NamedQuery(name = "Modir.findByName", query = "SELECT m FROM Modir m WHERE m.name = :name")
     , @NamedQuery(name = "Modir.findByEmail", query = "SELECT m FROM Modir m WHERE m.email = :email")
-    , @NamedQuery(name = "Modir.findByDep", query = "SELECT m FROM Modir m WHERE m.dep = :dep")})
+    , @NamedQuery(name = "Modir.findByDep", query = "SELECT m FROM Modir m WHERE m.dep = :dep"
+   )})
 public class Modir implements Serializable {
 
     private static final long serialVersionUID = 1L;

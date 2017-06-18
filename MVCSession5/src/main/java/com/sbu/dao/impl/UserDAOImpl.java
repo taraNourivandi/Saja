@@ -59,11 +59,26 @@ public class UserDAOImpl /*implements UserDAO*/ {
         {
             return null;
             
-        }
-        
-        
-        
+        }                    
     }
 
+	@Transactional
+    public boolean updatePass (String username ,String pass)          
+    {
+        Query query = entityManager.createNamedQuery("User.updatePass");
+        query.setParameter("username", username);
+        query.setParameter("pass", pass);
+        try{            
+            Object obj = query.executeUpdate();
+            System.out.println("update password succesfully /userDAOImpl");
+            return true;
+        }
+        catch(Exception e)
+        {
+            System.err.println(e);
+            System.out.println("error in update the password /userDAOImpl");
+            return false;
+        }
+    }
 }
 

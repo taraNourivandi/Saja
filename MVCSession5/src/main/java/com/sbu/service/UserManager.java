@@ -17,4 +17,5 @@ public interface UserManager {
         input correction have to be checked
         */
         int findLoginUser(String userName, String pass);
+		 User findUser (String username);
 }

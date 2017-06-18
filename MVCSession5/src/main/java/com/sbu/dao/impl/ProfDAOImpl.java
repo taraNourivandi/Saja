@@ -31,5 +31,43 @@ public class ProfDAOImpl /*implements ProfDAO*/ {
     {
         return entityManager.find(Prof.class, id);
     }
+	public String findEmail (int id)
+    {
+        return entityManager.find(Prof.class,id).getEmail();
+    }
+
+
+
+    ////Tara
+    public List<Prof> findAllProfs() {
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Prof> cq = builder.createQuery(Prof.class);
+        Root<Prof> root = cq.from(Prof.class);
+        cq.select(root);
+        return entityManager.createQuery(cq).getResultList();
+    }
+    
+    @Transactional
+    public boolean updateEmail(int id, String email)
+    {
+        System.out.println("in the update Email method in ProfDAOImpl");
+        Query query = entityManager.createNamedQuery("prof.updateEmail");
+        query.setParameter("email", email);        
+        query.setParameter("id", id);
+        System.out.println(query.toString());
+        try
+        {
+            Object obj = query.executeUpdate();
+            System.out.println("update email succesfully");
+            return true;
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+            System.out.println("error in update the email /profDAOImpl");
+            System.out.println("update email UNNNNNNNNNNNNNsuccesfully");
+            return false;
+        }
+    }
 }
 

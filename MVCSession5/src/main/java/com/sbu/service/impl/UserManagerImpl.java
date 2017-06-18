@@ -11,6 +11,7 @@ import com.sbu.dao.model.User;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import javax.ws.rs.core.Request;
 
 @Service
 public class UserManagerImpl /*implements UserManager*/ {
@@ -52,20 +53,20 @@ public class UserManagerImpl /*implements UserManager*/ {
         HashMap<String,String> hashList = new HashMap<String,String>();
         hashList.put("مشاهده نمرات", "");
         hashList.put("انتخاب واحد", "");
-        hashList.put("تغییر مشخصات", "changePassword");
+        hashList.put("تغییر مشخصات", "student/change");
         rolesAccess.add(hashList);
         //prof
         hashList = new HashMap<String,String>();
         hashList.put("مشاهده دروس", "");
         hashList.put("ثبت نمره", "");
-        hashList.put("تغییر مشخصات", "prof/changePassword");
+        hashList.put("تغییر مشخصات", "prof/change");
         rolesAccess.add(hashList);
         //modir
         hashList = new HashMap<String,String>();
-        hashList.put("تعریف/تغییر درس", "maneger/def_change_course");
-        hashList.put("تعریف/تغییر ترم", "");
+        hashList.put("تعریف/تغییر درس", "manager/def_change_course");
+        hashList.put("تعریف/تغییر ترم", "manager/courseForTerm");
         hashList.put("مشاهده دروس ارائه شده در هر ترم", "");
-        hashList.put("تغییر مشخصات", "changePassword");
+        hashList.put("تغییر مشخصات", "manager/change");;
         rolesAccess.add(hashList);
         
         
@@ -104,5 +105,9 @@ public class UserManagerImpl /*implements UserManager*/ {
         if(role<1 || role>3)
             return null;
         return rolesAccess.get(role-1);       
+    }
+    public User findUser (String userName)
+    {
+        return userDAOImpl.findUser(userName);
     }
 }

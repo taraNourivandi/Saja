@@ -13,7 +13,26 @@ public interface CourseManager {
 	List<Course> findAlls();
         List<Term> findAllTerms();
         List<Major> findAllMajors();
-        
+        List<String> findAllSection ();
+		List<String> findAllCourseType ();
+		List<String> findAllCourseTypeLab ();
+		List<String> findAllCourseGender();
+		void saveCourse(Integer ID, String name, int units,
+            int preCourse,
+            int courseTerm,
+            int courseMager, 
+            int coursesection,
+            int labtheorytype,
+            int coursetype, 
+            int coursegender);
+		void updateCourse(Integer ID, int units,
+            int preCourse,
+            int courseTerm,
+            int courseMager, 
+            int coursesection,
+            int labtheorytype,
+            int coursetype, 
+            int coursegender);	
         /*this function use for login 
         give usernaame and pass 
         if there is existing the same user then return it's id

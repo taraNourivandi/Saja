@@ -26,11 +26,79 @@
         <filter-name>LoginFilter</filter-name>
         <filter-class>com.sbu.filters.LoginFilter</filter-class>
     </filter>
-    
+    <!--tara-->
+    <filter>
+        <filter-name>ErrorFilter</filter-name>
+        <filter-class>com.sbu.filters.ErrorFilter</filter-class>
+    </filter>
+
+    <!--taraaaaaaaa-->
+    <!--<filter>-->
+        <!--<filter-name>StudentFilter</filter-name>-->
+        <!--<filter-class>com.sbu.filters.StudentFilter</filter-class>-->
+    <!--</filter>-->
+
+
+    <!--<filter>-->
+        <!--<filter-name>ProfFilter</filter-name>-->
+        <!--<filter-class>com.sbu.filters.ProfFilter</filter-class>-->
+    <!--</filter>-->
+
+    <!--<filter>-->
+        <!--<filter-name>ManagerFilter</filter-name>-->
+        <!--<filter-class>com.sbu.filters.ManagerFilter</filter-class>-->
+    <!--</filter>-->
+
+
+
+
+
+    <filter>  
+        <filter-name>encodingFilter</filter-name>  
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>  
+        <init-param>  
+           <param-name>encoding</param-name>  
+           <param-value>UTF-8</param-value>  
+        </init-param>  
+        <init-param>  
+           <param-name>forceEncoding</param-name>  
+           <param-value>true</param-value>  
+        </init-param>  
+    </filter> 
+
     <filter-mapping>
         <filter-name>LoginFilter</filter-name>
         <url-pattern>/home/*</url-pattern>
-    </filter-mapping>    
+    </filter-mapping>
 
+    <!--tara-->
+    <filter-mapping>
+        <filter-name>ErrorFilter</filter-name>
+        <url-pattern>/home/*</url-pattern>
+    </filter-mapping>
+
+    <!--taraaaaaaaaaaaaa-->
+    <!--<filter-mapping>-->
+        <!--<filter-name>StudentFilter</filter-name>-->
+        <!--<url-pattern>/student/*</url-pattern>-->
+    <!--</filter-mapping>-->
+
+    <!--<filter-mapping>-->
+        <!--<filter-name>ProfFilter</filter-name>-->
+        <!--<url-pattern>/prof/*</url-pattern>-->
+    <!--</filter-mapping>-->
+
+    <!--<filter-mapping>-->
+        <!--<filter-name>ManagerFilter</filter-name>-->
+        <!--<url-pattern>/manager/*</url-pattern>-->
+    <!--</filter-mapping>-->
+
+
+
+    <filter-mapping>  
+        <filter-name>encodingFilter</filter-name>  
+        <url-pattern>/*</url-pattern>  
+    </filter-mapping>
+    
 </web-app>
     

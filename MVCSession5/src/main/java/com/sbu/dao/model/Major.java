@@ -34,23 +34,14 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Major.findByMajor", query = "SELECT m FROM Major m WHERE m.major = :major")})
 public class Major implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    //private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "ID")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
     @Column(name = "MAJOR")
     private String major;
     //@OneToMany(cascade = CascadeType.ALL, mappedBy = "allowedmajor")
     //private Collection<Allowed> allowedCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "major")
-    private Collection<Stdtable> stdtableCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "major")
-    private Collection<Course> courseCollection;
     
 
     public Major() {
@@ -90,23 +81,7 @@ public class Major implements Serializable {
         this.allowedCollection = allowedCollection;
     }
 */
-    @XmlTransient
-    public Collection<Stdtable> getStdtableCollection() {
-        return stdtableCollection;
-    }
-
-    public void setStdtableCollection(Collection<Stdtable> stdtableCollection) {
-        this.stdtableCollection = stdtableCollection;
-    }
-
-    public Collection<Course> getCourseCollection() {
-        return courseCollection;
-    }
-
-    public void setCourseCollection(Collection<Course> courseCollection) {
-        this.courseCollection = courseCollection;
-    }
-
+   
     
     @Override
     public int hashCode() {

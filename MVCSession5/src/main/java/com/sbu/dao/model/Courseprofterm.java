@@ -57,25 +57,32 @@ public class Courseprofterm implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "EXAMDATE")
-    @Temporal(TemporalType.DATE)
-    private Date examdate;
+    private String examdate;
     @Basic(optional = false)
     @NotNull
     @Column(name = "CAPASITY")
     private int capasity;
     
-    @JoinColumn(name = "COURSEID", referencedColumnName = "ID")
+    @JoinColumn(name = "COURSEID", referencedColumnName = "IDCOURSE")
     @ManyToOne(optional = false)
     private Course courseid;
     
     @JoinColumn(name = "PROFID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Prof profid;
+
+    public void setStdgradeCollection(Collection<Stdgrade> stdgradeCollection) {
+        this.stdgradeCollection = stdgradeCollection;
+    }
+
+    public Collection<Stdgrade> getStdgradeCollection() {
+        return stdgradeCollection;
+    }
     @JoinColumn(name = "TERMID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Term termid;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "courseproftermid")
+    //delete
+    @OneToMany(mappedBy = "courseproftermid")
     private Collection<Stdgrade> stdgradeCollection;
 
     public Courseprofterm() {
@@ -85,13 +92,22 @@ public class Courseprofterm implements Serializable {
         this.id = id;
     }
 
-    public Courseprofterm(Integer id, String datetime, Date examdate, int capasity) {
+    public Courseprofterm(Integer id, String datetime, String examdate, int capasity) {
         this.id = id;
         this.datetime = datetime;
         this.examdate = examdate;
         this.capasity = capasity;
     }
 
+    //Tara
+    public Courseprofterm(String date,String exam, int capacity,Course course,Prof prof,Term term){
+        this.datetime=date;
+        this.examdate=exam;
+        this.capasity=capacity;
+        this.courseid=course;
+        this.profid=prof;
+        this.termid=term;
+    }
     public Integer getId() {
         return id;
     }
@@ -108,11 +124,11 @@ public class Courseprofterm implements Serializable {
         this.datetime = datetime;
     }
 
-    public Date getExamdate() {
+    public String getExamdate() {
         return examdate;
     }
 
-    public void setExamdate(Date examdate) {
+    public void setExamdate(String examdate) {
         this.examdate = examdate;
     }
 
@@ -147,7 +163,7 @@ public class Courseprofterm implements Serializable {
     public void setTermid(Term termid) {
         this.termid = termid;
     }
-
+/*
     @XmlTransient
     public Collection<Stdgrade> getStdgradeCollection() {
         return stdgradeCollection;
@@ -156,7 +172,7 @@ public class Courseprofterm implements Serializable {
     public void setStdgradeCollection(Collection<Stdgrade> stdgradeCollection) {
         this.stdgradeCollection = stdgradeCollection;
     }
-
+*/
     @Override
     public int hashCode() {
         int hash = 0;

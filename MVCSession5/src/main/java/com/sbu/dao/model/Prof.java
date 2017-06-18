@@ -60,8 +60,18 @@ public class Prof implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "DEP")
     private String dep;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "profid")
+    
+    @OneToMany(mappedBy = "profid")
     private Collection<Courseprofterm> courseproftermCollection;
+
+    public void setCourseproftermCollection(Collection<Courseprofterm> courseproftermCollection) {
+        this.courseproftermCollection = courseproftermCollection;
+    }
+
+    public Collection<Courseprofterm> getCourseproftermCollection() {
+        return courseproftermCollection;
+    }
+    
 
     public Prof() {
     }
@@ -109,14 +119,6 @@ public class Prof implements Serializable {
         this.dep = dep;
     }
 
-    @XmlTransient
-    public Collection<Courseprofterm> getCourseproftermCollection() {
-        return courseproftermCollection;
-    }
-
-    public void setCourseproftermCollection(Collection<Courseprofterm> courseproftermCollection) {
-        this.courseproftermCollection = courseproftermCollection;
-    }
 
     @Override
     public int hashCode() {

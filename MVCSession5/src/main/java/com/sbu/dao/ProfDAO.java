@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface ProfDAO 
 {
     Prof findUser(int id);
+	String findEmail (int id);
+	boolean updateEmail(int id, String email);
 }
