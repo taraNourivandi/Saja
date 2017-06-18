@@ -203,12 +203,11 @@ var counter = 1;
 		
 		var tempCourseId = "#course-id"+id;
 		document.getElementById("send-form").innerHTML = document.getElementById("send-form").innerHTML
-                +'<input name=courseId'+(chosedCourseCounter)+' type="text" value='+$(tempCourseId).html() +' style="display: none;">'
-                
-				 +'<input name=courseId'+(chosedCourseCounter)+' type="text" value='+$("#course-name").val()+' style="display: none;">'
+                +'<input name=courseId'+(chosedCourseCounter)+' type="text" value='+$(tempCourseId).html() +' style="display: none;">'               
 		;
 		
 		document.getElementById("counter").value = chosedCourseCounter;
+                chosedCourseCounter++;
 		//document.getElementById(divName).
 		
 		
