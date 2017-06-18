@@ -18,9 +18,9 @@ public class UserManagerImpl /*implements UserManager*/ {
     private ArrayList<HashMap> rolesAccess = new ArrayList<>();    
     
     /*
-    1 student  ->0
-    2 teacher  ->1
-    3 modir    ->2 
+    1 student  ->1
+    2 teacher  ->2
+    3 modir    ->3 
     */
     
     public UserManagerImpl() 
@@ -51,7 +51,7 @@ public class UserManagerImpl /*implements UserManager*/ {
         //student        
         HashMap<String,String> hashList = new HashMap<String,String>();
         hashList.put("مشاهده نمرات", "");
-        hashList.put("انتخاب واحد", "");
+        hashList.put("انتخاب واحد", "student/choose-course");
         hashList.put("تغییر مشخصات", "changePassword");
         rolesAccess.add(hashList);
         //prof

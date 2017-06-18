@@ -61,6 +61,17 @@ public class Prof implements Serializable {
     @Column(name = "DEP")
     private String dep;
     
+    @OneToMany(mappedBy = "profid")
+    private Collection<Courseprofterm> courseproftermCollection;
+
+    public void setCourseproftermCollection(Collection<Courseprofterm> courseproftermCollection) {
+        this.courseproftermCollection = courseproftermCollection;
+    }
+
+    public Collection<Courseprofterm> getCourseproftermCollection() {
+        return courseproftermCollection;
+    }
+    
 
     public Prof() {
     }

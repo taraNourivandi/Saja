@@ -50,6 +50,14 @@ public class Stdgrade implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "GRADESTATUS")
     private String gradestatus;
+
+    public Courseprofterm getCourseproftermid() {
+        return courseproftermid;
+    }
+
+    public void setCourseproftermid(Courseprofterm courseproftermid) {
+        this.courseproftermid = courseproftermid;
+    }
     @JoinColumn(name = "COURSEPROFTERMID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Courseprofterm courseproftermid;

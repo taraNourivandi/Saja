@@ -77,8 +77,17 @@ public class Stdtable implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "DEP")
     private String dep;
-    //@OneToMany(cascade = CascadeType.ALL, mappedBy = "stdid")
-    //private Collection<Stdgrade> stdgradeCollection;
+    
+    @OneToMany(mappedBy = "stdid")
+    private Collection<Stdgrade> stdgradeCollection;
+
+    public Collection<Stdgrade> getStdgradeCollection() {
+        return stdgradeCollection;
+    }
+
+    public void setStdgradeCollection(Collection<Stdgrade> stdgradeCollection) {
+        this.stdgradeCollection = stdgradeCollection;
+    }
     
     //@OneToMany(cascade = CascadeType.ALL, mappedBy = "stdid")
     //private Collection<Average> averageCollection;

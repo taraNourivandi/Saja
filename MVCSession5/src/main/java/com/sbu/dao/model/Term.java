@@ -31,7 +31,10 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Term.findAll", query = "SELECT t FROM Term t")
     , @NamedQuery(name = "Term.findById", query = "SELECT t FROM Term t WHERE t.id = :id")
-    , @NamedQuery(name = "Term.findByName", query = "SELECT t FROM Term t WHERE t.name = :name")})
+    , @NamedQuery(name = "Term.findByName", query = "SELECT t FROM Term t WHERE t.name = :name")
+    , @NamedQuery(name = "Term.findCurrentTerm", query = "SELECT t FROM Term t ORDER BY t.id DESC")
+        
+})
 public class Term implements Serializable {
 
    

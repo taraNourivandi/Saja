@@ -2,6 +2,7 @@ C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\dao\StdDAO.java
 C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\prof_course_controler.java
 C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\controller\LoginController.java
 C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\controller\WelcomeController.java
+C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\dao\impl\CourseProfTermDAOImpl.java
 C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\service\impl\ManagerManagerImpl.java
 C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\service\StdManager.java
 C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\dao\model\Courseprofterm.java
@@ -17,6 +18,7 @@ C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\controller\model\Cour
 C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\dao\model\Department.java
 C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\dao\UserDAO.java
 C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\service\impl\CourseManagerImpl.java
+C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\service\impl\CourseProfTermManagerImpl.java
 C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\service\UserManager.java
 C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\service\ManagerManager.java
 C:\Users\Fatemeh-pc\Saja\MVCSession5\src\main\java\com\sbu\dao\model\Modir.java

@@ -67,9 +67,9 @@ public class StdManagerImpl /*implements ProfManager*/ {
 
 		employee.setDepartment(department);
 
-		courseDAOImpl.inserEmp(employee) ;
-		
-       
+		courseDAOImpl.inserEmp(employee) ;       
     }
+    
+    
     
 }

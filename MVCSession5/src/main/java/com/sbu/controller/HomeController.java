@@ -16,6 +16,7 @@ import com.sbu.dao.model.Prof;
 import com.sbu.dao.model.Stdtable;
 import com.sbu.dao.model.User;
 import com.sbu.dao.model.Course;
+import com.sbu.dao.model.Courseprofterm;
 import com.sbu.dao.model.Term;
 import com.sbu.dao.model.Major;
 
@@ -25,6 +26,7 @@ import com.sbu.service.impl.ProfManagerImpl;
 import com.sbu.service.impl.UserManagerImpl;
 import com.sbu.service.impl.StdManagerImpl;
 import com.sbu.service.impl.CourseManagerImpl;
+import com.sbu.service.impl.CourseProfTermManagerImpl;
 
 //others
 import java.io.IOException;
@@ -63,6 +65,10 @@ public class HomeController {
     
     @Autowired
     public CourseManagerImpl courseManagerImpl;
+    
+    //fatemeh  
+    @Autowired
+    public CourseProfTermManagerImpl courseProfTermManagerImpl;
     
     //@RequestMapping(value = "/login", method = RequestMethod.GET)
     public String homePage() 
@@ -215,4 +221,18 @@ public class HomeController {
         response.sendRedirect("../manager");
         return "home";
     } 
+    
+    //fatemeh
+    @RequestMapping(value = {"/student/choose-course"}, method = RequestMethod.GET)
+    public String showCourseChosePage (@ModelAttribute("SpringWeb")CourseIn courseIn, Model model,HttpServletRequest request, HttpServletResponse response) throws IOException 
+    {
+        if((int)request.getSession().getAttribute("role") != 1)            
+            return "error";   
+        Term curretTerm = courseProfTermManagerImpl.findCurrentTerm();
+        System.out.println(curretTerm.getName());
+        List<Courseprofterm> courses = courseProfTermManagerImpl.findCourseProfTermByTerm(curretTerm);        
+        request.setAttribute("currentTermCourses", courses);       
+        return "std-reg";
+    } 
+    
 }

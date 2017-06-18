@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Courseprofterm.findById", query = "SELECT c FROM Courseprofterm c WHERE c.id = :id")
     , @NamedQuery(name = "Courseprofterm.findByDatetime", query = "SELECT c FROM Courseprofterm c WHERE c.datetime = :datetime")
     , @NamedQuery(name = "Courseprofterm.findByExamdate", query = "SELECT c FROM Courseprofterm c WHERE c.examdate = :examdate")
-    , @NamedQuery(name = "Courseprofterm.findByCapasity", query = "SELECT c FROM Courseprofterm c WHERE c.capasity = :capasity")})
+    , @NamedQuery(name = "Courseprofterm.findByCapasity", query = "SELECT c FROM Courseprofterm c WHERE c.capasity = :capasity")
+        //fatemeh
+    , @NamedQuery(name = "Courseprofterm.findByTerm", query = "SELECT c FROM Courseprofterm c WHERE c.termid = :termid")})
 public class Courseprofterm implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -57,8 +59,7 @@ public class Courseprofterm implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "EXAMDATE")
-    @Temporal(TemporalType.DATE)
-    private Date examdate;
+    private String examdate;
     @Basic(optional = false)
     @NotNull
     @Column(name = "CAPASITY")
@@ -71,12 +72,20 @@ public class Courseprofterm implements Serializable {
     @JoinColumn(name = "PROFID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Prof profid;
+
+    public void setStdgradeCollection(Collection<Stdgrade> stdgradeCollection) {
+        this.stdgradeCollection = stdgradeCollection;
+    }
+
+    public Collection<Stdgrade> getStdgradeCollection() {
+        return stdgradeCollection;
+    }
     @JoinColumn(name = "TERMID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Term termid;
     //delete
-    //@OneToMany(cascade = CascadeType.ALL, mappedBy = "courseproftermid")
-    //private Collection<Stdgrade> stdgradeCollection;
+    @OneToMany(mappedBy = "courseproftermid")
+    private Collection<Stdgrade> stdgradeCollection;
 
     public Courseprofterm() {
     }
@@ -85,7 +94,7 @@ public class Courseprofterm implements Serializable {
         this.id = id;
     }
 
-    public Courseprofterm(Integer id, String datetime, Date examdate, int capasity) {
+    public Courseprofterm(Integer id, String datetime, String examdate, int capasity) {
         this.id = id;
         this.datetime = datetime;
         this.examdate = examdate;
@@ -108,11 +117,11 @@ public class Courseprofterm implements Serializable {
         this.datetime = datetime;
     }
 
-    public Date getExamdate() {
+    public String getExamdate() {
         return examdate;
     }
 
-    public void setExamdate(Date examdate) {
+    public void setExamdate(String examdate) {
         this.examdate = examdate;
     }
 
