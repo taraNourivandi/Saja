@@ -8,13 +8,7 @@ package com.sbu.controller;
 //input model
 import com.sbu.controller.model.*;
 //dao model
-import com.sbu.dao.model.Modir;
-import com.sbu.dao.model.Prof;
-import com.sbu.dao.model.Stdtable;
-import com.sbu.dao.model.User;
-import com.sbu.dao.model.Course;
-import com.sbu.dao.model.Term;
-import com.sbu.dao.model.Major;
+import com.sbu.dao.model.*;
 
 //service imp
 import com.sbu.service.impl.*;
@@ -57,7 +51,13 @@ public class HomeController {
 
     @Autowired
     public CourseProfTermManagerImpl courseProfTermManagerImpl;
-    
+
+    @Autowired
+    public StdgradesManagerImpl stdgradesManager;
+
+
+
+
     //@RequestMapping(value = "/login", method = RequestMethod.GET)
     public String homePage() 
     {
@@ -364,6 +364,64 @@ public class HomeController {
 
 
         return "modir-term";
+    }
+
+
+
+    ////////Tara
+    @RequestMapping(value = {"/student/grades"},method = RequestMethod.GET)
+    public String stdGrades(HttpServletRequest request, HttpServletResponse response){
+        response.setContentType("text/html;charset=UTF-8");
+
+        ArrayList<TermGrade> termGrades = new ArrayList<TermGrade>();
+        ArrayList<GradeCourses> courseGradeList= new ArrayList<GradeCourses>();
+
+        GradeCourses gradeCourses = new GradeCourses();
+        gradeCourses.setCourseId(1);
+        gradeCourses.setCourseName("a");
+        gradeCourses.setCourseType(1);
+        gradeCourses.setCourseUnit(3);
+        gradeCourses.setGrade(20);
+        gradeCourses.setGradeStatus(1);
+        gradeCourses.setProfName("ali");
+        courseGradeList.add(gradeCourses);
+
+        GradeCourses gradeCourses2 = new GradeCourses();
+        gradeCourses2.setCourseId(2);
+        gradeCourses2.setCourseName("b");
+        gradeCourses2.setCourseType(1);
+        gradeCourses2.setCourseUnit(4);
+        gradeCourses2.setGrade(30);
+        gradeCourses2.setGradeStatus(2);
+        gradeCourses2.setProfName("naghi");
+        courseGradeList.add(gradeCourses2);
+
+
+
+        TermGrade termGrade = new TermGrade();
+        termGrade.setGradeCourses(courseGradeList);
+        termGrade.setAvg(100);
+        termGrade.setFailedUnits(10);
+        termGrade.setPassedUnits(200);
+        termGrade.setTotalUnits();
+        termGrade.setTermCode(2020);
+        termGrades.add(termGrade);
+
+
+        TermGrade termGrade2 = new TermGrade();
+        termGrade2.setGradeCourses(courseGradeList);
+        termGrade2.setAvg(10);
+        termGrade2.setFailedUnits(0);
+        termGrade2.setPassedUnits(20);
+        termGrade2.setTotalUnits();
+        termGrade2.setTermCode(3030);
+        termGrades.add(termGrade2);
+        System.out.println("size:"+termGrades.size());
+for (int i=0;i<termGrades.size();i++){
+    System.out.println(termGrades.get(i).getTermCode());}
+        request.setAttribute("termList",termGrades);
+
+        return "stdGrades";
     }
 ////Tara
 @RequestMapping(value = {"/manager/newCourseForTerm"}, method = RequestMethod.POST)

@@ -42,7 +42,7 @@
             <div class="nav-wrapper ">
                 <a href="#" class="brand-logo right">
                     <h1 class="hide">سجاد سیستم جامع آموزش</h1>
-                    <img class="responsive-img" src="assets/img/saja_logo.png" alt="سجا">
+                    <img class="responsive-img" src="${pageContext.request.contextPath}/resources/img/saja_logo.png" alt="سجا">
                 </a>
                 <a class="page-title right hide-on-med-and-down">سیستم جامع آموزش</a>
                 <!--nav-mobile menu button-->
@@ -56,31 +56,7 @@
     <!--//top-header-->
 
     <!--sidebar-->
-    <ul id="nav-mobile" class="side-nav right fixed">
-        <li class="user-profile valign-wrapper">
-            <!--<img src="assets/img/photo_2017-03-27_09-55-25.jpg" alt="عکس کاربر" class="circle responsive-img">-->
-            <i class="material-icons medium">face</i>
-            <p>رامک قوامی زاده</p>
-
-            <a href=main.html>
-                <i class="material-icons tooltipped" data-position="bottom" data-delay="50"
-                   data-tooltip="خروج از سیستم">power_settings_new</i>
-            </a>
-        </li>
-        <li class="right-align">
-            <ul class="collapsible collapsible-accordion">
-                <li class="bold">
-                    <a href="modir-course.html" class="collapsible-header waves-effect waves-teal">تعریف/تغییر درس</a>
-                </li>
-                <li class="bold">
-                    <a href="modir-view.html" class="collapsible-header waves-effect waves-teal">مشاهده دروس ارائه شده در هر ترم</a>
-                </li>
-                <li class="bold">
-                    <a href="modir-change.html" class="collapsible-header waves-effect waves-teal">تغییر مشخصات</a>
-                </li>
-            </ul>
-        </li>
-    </ul>
+    <%@ include file="sidebar.jsp" %>
     <!--//sidebar-->
 
 </header>
@@ -90,7 +66,7 @@
     <div class="container" >
         <ul id="tabs-swipe-demo3" class="tabs">
             <li class="tab col s6"><a href="#add-term">تعریف ترم جدید</a></li>
-            <li class="tab col s6"><a href="#change-term">تغییر ترم</a></li>
+            <%--<li class="tab col s6"><a href="#change-term">تغییر ترم</a></li>--%>
         </ul>
 
         <div id="add-term" class="col s12 row">
@@ -525,5 +501,6 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jscripts.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/scripts.js"></script>
 </body>
+
 
 </html>
