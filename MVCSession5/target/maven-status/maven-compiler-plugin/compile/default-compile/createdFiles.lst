@@ -1,4 +1,6 @@
+com\sbu\service\impl\StdGradeManagerImpl.class
 com\sbu\dao\impl\ProfDAOImpl.class
+com\sbu\dao\impl\CourseGradeDAOImpl.class
 com\sbu\dao\StdDAO.class
 com\sbu\controller\HomeController.class
 com\sbu\dao\impl\StdDAOImpl.class

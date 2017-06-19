@@ -19,6 +19,8 @@ import com.sbu.dao.model.Course;
 import com.sbu.dao.model.Courseprofterm;
 import com.sbu.dao.model.Term;
 import com.sbu.dao.model.Major;
+import com.sbu.dao.model.Stdgrade;
+
 
 //service imp
 import com.sbu.service.impl.ManagerManagerImpl;
@@ -27,12 +29,14 @@ import com.sbu.service.impl.UserManagerImpl;
 import com.sbu.service.impl.StdManagerImpl;
 import com.sbu.service.impl.CourseManagerImpl;
 import com.sbu.service.impl.CourseProfTermManagerImpl;
+import com.sbu.service.impl.StdGradeManagerImpl;
 
 //others
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -69,6 +73,11 @@ public class HomeController {
     //fatemeh  
     @Autowired
     public CourseProfTermManagerImpl courseProfTermManagerImpl;
+    
+    //fatemeh  
+    @Autowired
+    public StdGradeManagerImpl stdGradeManagerImpl;
+    
     
     //@RequestMapping(value = "/login", method = RequestMethod.GET)
     public String homePage() 
@@ -108,7 +117,7 @@ public class HomeController {
             //not correct -> hove to be load sutable error page
             return "error"; 
         int id = (int) request.getSession().getAttribute("id");
-        Stdtable std = stdManagerImpl.findProf(id);
+        Stdtable std = stdManagerImpl.findStd(id);
         String name = std.getName();
         request.getSession().setAttribute("name", name);
         return helperMethod(request);        
@@ -231,8 +240,51 @@ public class HomeController {
         Term curretTerm = courseProfTermManagerImpl.findCurrentTerm();
         System.out.println(curretTerm.getName());
         List<Courseprofterm> courses = courseProfTermManagerImpl.findCourseProfTermByTerm(curretTerm);        
-        request.setAttribute("currentTermCourses", courses);       
+        
+        //get std courses
+        int stdId = (int) request.getSession().getAttribute("id");
+        System.out.println("std id : " + stdId);
+        Iterator <Stdgrade> stdGradeIt = stdManagerImpl.findStd(stdId).getStdgradeCollection().iterator();
+        List<Courseprofterm> stdCourses = new ArrayList<Courseprofterm>();
+        while (stdGradeIt.hasNext())
+        {
+            Stdgrade stdgrade = stdGradeIt.next();
+            stdCourses.add(stdgrade.getCourseproftermid());           
+        }
+        courses.removeAll(stdCourses);
+        request.setAttribute("currentTermCourses", courses);  
+        request.setAttribute("stdCourses", stdCourses);
+        
         return "std-reg";
+    } 
+    
+    //fatemeh
+    @RequestMapping(value = {"/student/add-course"}, method = RequestMethod.POST)
+    public String addCourseChose (@ModelAttribute("SpringWeb")CourseIn courseIn, Model model,HttpServletRequest request, HttpServletResponse response) throws IOException 
+    {
+        if((int)request.getSession().getAttribute("role") != 1)            
+            return "error";   
+        int numberOfCourses = Integer.parseInt(request.getParameter("numberOfCourses"));
+        System.out.println("numberOfCourses : " + numberOfCourses);
+        Stdtable student = stdManagerImpl.findStd((int) request.getSession().getAttribute("id"));
+        
+        for(int i = 1;i<=numberOfCourses;i++)
+        {
+            String name = "courseProfTremId"+i;
+            int courseProfTermId = Integer.parseInt(request.getParameter(name)); 
+            Courseprofterm courseToAdd = courseProfTermManagerImpl.findCourseproftermById(courseProfTermId);
+            Stdgrade newCourse = new Stdgrade();
+            newCourse.setCourseproftermid(courseToAdd);
+            newCourse.setGrade(0);
+            newCourse.setGradestatus("نامشخص");
+            newCourse.setStdid(student);   
+            
+            stdGradeManagerImpl.insertStdGrade(newCourse);
+            
+            
+        }
+        
+        return "home";
     } 
     
 }

@@ -10,6 +10,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% 
     List<Courseprofterm> courses = (List<Courseprofterm>) request.getAttribute("currentTermCourses");
+    List<Courseprofterm> stdCourses = (List<Courseprofterm>) request.getAttribute("stdCourses");
 %>
 <!DOCTYPE html>
 <!DOCTYPE html>
@@ -84,6 +85,21 @@
 	
 	<!--new change -------------------------------------------------------------------->
     <tbody id="dynamicInput">
+        
+        <% for (Courseprofterm coursSample : stdCourses) {%>
+        <tr>
+                
+                <td> <%=coursSample.getCourseid().getId()%> </td>
+                <!--course name-->
+                <td><%=coursSample.getCourseid().getName()%></td>
+                <!--teacher name-->
+                <td><%=coursSample.getProfid().getName()%></td>
+                <!--datetime-->
+                <td><%=coursSample.getDatetime()%></td>
+                <!--examTime-->
+                <td><%=coursSample.getExamdate()%></td>  
+      </tr>
+      <%}%>
 
 
 
@@ -97,7 +113,7 @@
         
 		<!--new change -------------------------------------------------------------------->
             <br><br>
-		<form  method="get" action="form submition" id="send-form">
+		<form  method="post" action="add-course" id="send-form">
                 <input name="numberOfCourses" id="counter" style="display: none;" >
                 <a href="#take-course-modal" class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">add</i></a>
                 <button type="submit" class="btn-floating btn-large waves-effect waves-light green"><i class="material-icons">done_all</i></button>
@@ -158,7 +174,7 @@
         <% for (int i = 0;i<courses.size();i++) {%>
         <tr>
             <td>
-                <button id="btn<%=i+1%>" class="btn-floating btn-small waves-effect waves-light green"  onClick="addDynamicCourse('dynamicInput' , <%=i+1%>);"><i class="material-icons">add</i></button>
+                <button id="btn<%=i+1%>" class="btn-floating btn-small waves-effect waves-light green"  onClick="addDynamicCourse('dynamicInput' , <%=i+1%> , <%=courses.get(i).getId()%>);"><i class="material-icons">add</i></button>
             </td>
             <div id ="div<%=i+1%>"> 
                 <td id = "course-id<%=i+1%>"><%=courses.get(i).getCourseid().getId() %></td>

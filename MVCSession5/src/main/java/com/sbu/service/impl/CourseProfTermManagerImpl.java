@@ -39,5 +39,10 @@ public class CourseProfTermManagerImpl /*implements UserManager*/
         return courseProfTermDAOImpl.findCurrentTerm();
     }
     
+    public Courseprofterm findCourseproftermById (int id)
+    {
+        return courseProfTermDAOImpl.findCourseprofterm(id);
+    }
+    
     
 }

@@ -11,6 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -78,7 +79,7 @@ public class Stdtable implements Serializable {
     @Column(name = "DEP")
     private String dep;
     
-    @OneToMany(mappedBy = "stdid")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "stdid")
     private Collection<Stdgrade> stdgradeCollection;
 
     public Collection<Stdgrade> getStdgradeCollection() {

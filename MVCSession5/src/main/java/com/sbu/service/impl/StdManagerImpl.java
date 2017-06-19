@@ -29,7 +29,7 @@ public class StdManagerImpl /*implements ProfManager*/ {
     public CourseDAOImpl courseDAOImpl;
     
     //@Override
-    public Stdtable findProf(int id)
+    public Stdtable findStd(int id)
     {
         return stdDAOImpl.findUser(id);        
     }

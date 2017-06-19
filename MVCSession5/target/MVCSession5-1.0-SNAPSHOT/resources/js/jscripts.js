@@ -35,41 +35,58 @@ function() {
 function createDynamicURL()
 {
     //The variable to be returned
+    console.log("in the fuction");
 	var user = $("#user-field").val();
 	var pass = $("#pass-field").val();
-    var URL = "";
+        var URL = "";
 	if(user == "" || user == undefined)
 	{
 		$("#user-field").removeClass("validate");
 		$("#user-field").addClass("invalid");
 		$("#user-icon").addClass("invalid");
-		URL = false;
+		
 	}
 	if (pass== "" || pass == undefined)
 	{
 		$("#pass-field").removeClass("validate");
 		$("#pass-field").addClass("invalid");
 		$("#pass-icon").addClass("invalid");
-		URL = false;
 	}
-	else
-	{
-		URL = ""+ user + ".html";
-	}
-    return URL;
+	else //user and pass is not empty
+	{           
+            //URL = ""+ user + ".html";
+                $.post("check",
+                {
+                  name: $("#user-field").val(),
+                  pass: $("#pass-field").val(),
+                },
+                function(data,status){
+                    alert(data);
+                    if(data == "notFound")
+                    {
+                        console.log("is false");
+                        $("p.error-message").removeClass("hidden");    
+                        $("#pass-field").removeClass("validate");
+                        $("#pass-field").addClass("invalid");
+                        $("#pass-icon").addClass("invalid");
+                        $("#user-field").removeClass("validate");
+                        $("#user-field").addClass("invalid");
+                        $("#user-icon").addClass("invalid");
+                    }
+                    else
+                    {
+                        console.log("is url");
+                        window.location = data; 
+                    }                       
+                });            
+	}       
 }
 
 $("#submit-btn").click(
 function() {
-    RedirectURL();
+    createDynamicURL();
   });
 
-function RedirectURL()
-{
-	var url = createDynamicURL();
-    if(url != false)
-		window.location = url;  
-}
 
 function createDynamicCourse(divName)
 {
@@ -95,8 +112,8 @@ function createDynamicCourse(divName)
 		$("#course-name").addClass("invalid");
 		//$("#user-icon").addClass("invalid");
 		//URL = false;
-		flag = false;
 	}
+		flag = false;
 	if (zarfiat== "" || zarfiat == undefined)
 	{
 		$("#zarfiat").removeClass("validate");
@@ -188,7 +205,7 @@ var counter = 1;
     }
 	
 	var chosedCourseCounter = 1;
-	function addDynamicCourse(divName , id)
+	function addDynamicCourse(divName , id , courseProfTermId)
 	{
 		console.log("in function : " + id);
 		var selectedDiveId = "#btn" + id;
@@ -200,10 +217,9 @@ var counter = 1;
 		//newdiv.find('td').first().remove();
 		document.getElementById(divName).appendChild(newdiv);
 		$("#"+divName+" tr:last-child").find('td').first().remove();
-		
-		var tempCourseId = "#course-id"+id;
+                
 		document.getElementById("send-form").innerHTML = document.getElementById("send-form").innerHTML
-                +'<input name=courseId'+(chosedCourseCounter)+' type="text" value='+$(tempCourseId).html() +' style="display: none;">'               
+                +'<input name=courseProfTremId'+(chosedCourseCounter)+' type="text" value='+courseProfTermId+' style="display: none;">'               
 		;
 		
 		document.getElementById("counter").value = chosedCourseCounter;

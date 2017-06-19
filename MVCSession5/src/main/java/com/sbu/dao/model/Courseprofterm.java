@@ -12,6 +12,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -73,20 +74,21 @@ public class Courseprofterm implements Serializable {
     @ManyToOne(optional = false)
     private Prof profid;
 
-    public void setStdgradeCollection(Collection<Stdgrade> stdgradeCollection) {
+    @JoinColumn(name = "TERMID", referencedColumnName = "ID")
+    @ManyToOne(optional = false)
+    private Term termid;
+    //delete
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "courseproftermid")
+    private Collection<Stdgrade> stdgradeCollection;
+
+     public void setStdgradeCollection(Collection<Stdgrade> stdgradeCollection) {
         this.stdgradeCollection = stdgradeCollection;
     }
 
     public Collection<Stdgrade> getStdgradeCollection() {
         return stdgradeCollection;
     }
-    @JoinColumn(name = "TERMID", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
-    private Term termid;
-    //delete
-    @OneToMany(mappedBy = "courseproftermid")
-    private Collection<Stdgrade> stdgradeCollection;
-
+    
     public Courseprofterm() {
     }
 

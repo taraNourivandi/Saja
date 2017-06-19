@@ -60,6 +60,11 @@ public class CourseProfTermDAOImpl /*implements UserDAO*/ {
         Query query = entityManager.createNamedQuery("Term.findCurrentTerm");
         return (Term) query.setMaxResults(1).getSingleResult();    
     }
+    
+    public Courseprofterm findCourseprofterm (int id)
+    {
+        return entityManager.find(Courseprofterm.class, id);
+    }
 
 }
 
