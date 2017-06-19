@@ -9,13 +9,13 @@ public class GradeCourses {
     String profName;
     int courseUnit;
     int grade;
-    int gradeStatus;
+    String  gradeStatus;
     int courseType;
 
 
     public GradeCourses(){}
 
-    public GradeCourses(int courseId, String courseName, String profName, int courseUnit, int grade, int gradeStatus, int courseType) {
+    public GradeCourses(int courseId, String courseName, String profName, int courseUnit, int grade, String gradeStatus, int courseType) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.profName = profName;
@@ -66,11 +66,11 @@ public class GradeCourses {
         this.grade = grade;
     }
 
-    public int getGradeStatus() {
+    public String getGradeStatus() {
         return gradeStatus;
     }
 
-    public void setGradeStatus(int gradeStatus) {
+    public void setGradeStatus(String gradeStatus) {
         this.gradeStatus = gradeStatus;
     }
 

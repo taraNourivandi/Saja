@@ -16,6 +16,7 @@ import com.sbu.service.impl.*;
 //others
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Array;
 import java.util.*;
 
 import javafx.scene.control.Alert;
@@ -374,51 +375,67 @@ public class HomeController {
         response.setContentType("text/html;charset=UTF-8");
 
         ArrayList<TermGrade> termGrades = new ArrayList<TermGrade>();
-        ArrayList<GradeCourses> courseGradeList= new ArrayList<GradeCourses>();
-
-        GradeCourses gradeCourses = new GradeCourses();
-        gradeCourses.setCourseId(1);
-        gradeCourses.setCourseName("a");
-        gradeCourses.setCourseType(1);
-        gradeCourses.setCourseUnit(3);
-        gradeCourses.setGrade(20);
-        gradeCourses.setGradeStatus(1);
-        gradeCourses.setProfName("ali");
-        courseGradeList.add(gradeCourses);
-
-        GradeCourses gradeCourses2 = new GradeCourses();
-        gradeCourses2.setCourseId(2);
-        gradeCourses2.setCourseName("b");
-        gradeCourses2.setCourseType(1);
-        gradeCourses2.setCourseUnit(4);
-        gradeCourses2.setGrade(30);
-        gradeCourses2.setGradeStatus(2);
-        gradeCourses2.setProfName("naghi");
-        courseGradeList.add(gradeCourses2);
+        int stId= (int) request.getSession().getAttribute("id");
+        List<Stdgrade> allTerms = stdManagerImpl.findAllGradeCourses(stId);
+        ArrayList<Integer> terms = new ArrayList<Integer>();
 
 
+        for(int k=0;k<allTerms.size();k++){
+            Integer temp=allTerms.get(k).getCourseproftermid().getTermid().getId();
+            if(!terms.contains(temp)){
+            terms.add(temp);}
+        }
+        System.out.println(terms);
 
-        TermGrade termGrade = new TermGrade();
-        termGrade.setGradeCourses(courseGradeList);
-        termGrade.setAvg(100);
-        termGrade.setFailedUnits(10);
-        termGrade.setPassedUnits(200);
-        termGrade.setTotalUnits();
-        termGrade.setTermCode(2020);
-        termGrades.add(termGrade);
+        for (int j=0;j<terms.size();j++){
+            ArrayList<GradeCourses> courseGradeList= new ArrayList<GradeCourses>();
+            TermGrade termGrade = new TermGrade();
+            List<Stdgrade> courses= stdManagerImpl.findAllGradeCourses(stId);
+            System.out.println(" courses size:"+courses.size());
+            int passedCount = 0;
+            int failedCount = 0;
+            int gradesSum = 0;
+
+            for(int i=0;i<courses.size();i++) {
 
 
-        TermGrade termGrade2 = new TermGrade();
-        termGrade2.setGradeCourses(courseGradeList);
-        termGrade2.setAvg(10);
-        termGrade2.setFailedUnits(0);
-        termGrade2.setPassedUnits(20);
-        termGrade2.setTotalUnits();
-        termGrade2.setTermCode(3030);
-        termGrades.add(termGrade2);
-        System.out.println("size:"+termGrades.size());
-for (int i=0;i<termGrades.size();i++){
-    System.out.println(termGrades.get(i).getTermCode());}
+                if(courses.get(i).getCourseproftermid().getTermid().getId()==terms.get(j)) {
+                    GradeCourses gradeCourses = new GradeCourses();
+                    gradeCourses.setCourseId(courses.get(i).getCourseproftermid().getCourseid().getId());
+                    gradeCourses.setCourseName(courses.get(i).getCourseproftermid().getCourseid().getName());
+                    gradeCourses.setCourseType(courses.get(i).getCourseproftermid().getCourseid().getCoursetype());
+                    gradeCourses.setCourseUnit(courses.get(i).getCourseproftermid().getCourseid().getUnits());
+                    gradeCourses.setProfName(courses.get(i).getCourseproftermid().getProfid().getName());
+                    gradeCourses.setGrade(courses.get(i).getGrade());
+                    gradesSum = gradesSum + courses.get(i).getGrade();
+
+                    if (courses.get(i).getGrade() >= 10) {
+                        gradeCourses.setGradeStatus("قبول");
+                        passedCount = passedCount + courses.get(i).getCourseproftermid().getCourseid().getUnits();
+                    }
+                    else {
+                        gradeCourses.setGradeStatus("رد");
+                        failedCount = failedCount + courses.get(i).getCourseproftermid().getCourseid().getUnits();
+                    }
+                    courseGradeList.add(gradeCourses);
+                    for (int m=0;m<courseGradeList.size();m++) {
+                        System.out.print(courseGradeList.get(m).getCourseName()+"\t");
+                    }
+                    System.out.println();
+
+
+
+                }
+            }
+            termGrade.setGradeCourses(courseGradeList);
+            termGrade.setFailedUnits(failedCount);
+            termGrade.setPassedUnits(passedCount);
+            termGrade.setTotalUnits();
+            termGrade.setAvg(gradesSum / termGrade.getTotalUnits());
+            termGrade.setTermCode(terms.get(j));
+            termGrades.add(termGrade);
+        }
+
         request.setAttribute("termList",termGrades);
 
         return "stdGrades";

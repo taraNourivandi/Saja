@@ -1,23 +1,19 @@
 package com.sbu.service.impl;
 
 import com.sbu.dao.impl.CourseDAOImpl;
+import com.sbu.dao.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sbu.dao.impl.StdDAOImpl;
 import com.sbu.dao.impl.UserDAOImpl;
-import com.sbu.dao.model.Course;
-import com.sbu.dao.model.Department;
-import com.sbu.dao.model.Employee;
-import com.sbu.dao.model.Major;
-import com.sbu.dao.model.Stdtable;
-import com.sbu.dao.model.Term;
-import com.sbu.dao.model.User;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 public class StdManagerImpl /*implements ProfManager*/ {
@@ -93,5 +89,14 @@ public class StdManagerImpl /*implements ProfManager*/ {
             return true;
         else
             return false;               
+    }
+
+
+
+
+    /////Tara
+    public List<Stdgrade> findAllGradeCourses(int id)
+    {
+        return stdDAOImpl.findGradeCourses(findStd(id));
     }
 }

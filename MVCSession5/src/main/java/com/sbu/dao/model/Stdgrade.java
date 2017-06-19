@@ -32,7 +32,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Stdgrade.findAll", query = "SELECT s FROM Stdgrade s")
     , @NamedQuery(name = "Stdgrade.findById", query = "SELECT s FROM Stdgrade s WHERE s.id = :id")
     , @NamedQuery(name = "Stdgrade.findByGrade", query = "SELECT s FROM Stdgrade s WHERE s.grade = :grade")
-    , @NamedQuery(name = "Stdgrade.findByGradestatus", query = "SELECT s FROM Stdgrade s WHERE s.gradestatus = :gradestatus")})
+    , @NamedQuery(name = "Stdgrade.findByGradestatus", query = "SELECT s FROM Stdgrade s WHERE s.gradestatus = :gradestatus")
+    })
 public class Stdgrade implements Serializable {
 
     private static final long serialVersionUID = 1L;
