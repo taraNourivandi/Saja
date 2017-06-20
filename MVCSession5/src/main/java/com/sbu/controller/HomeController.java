@@ -406,16 +406,28 @@ public class HomeController {
                     gradeCourses.setCourseType(courses.get(i).getCourseproftermid().getCourseid().getCoursetype());
                     gradeCourses.setCourseUnit(courses.get(i).getCourseproftermid().getCourseid().getUnits());
                     gradeCourses.setProfName(courses.get(i).getCourseproftermid().getProfid().getName());
-                    gradeCourses.setGrade(courses.get(i).getGrade());
+                    if(courses.get(i).getGrade()!=-1){
+                        gradeCourses.setGrade(courses.get(i).getGrade());}
+                    else{
+                        gradeCourses.setGrade(0);}
                     gradesSum = gradesSum + courses.get(i).getGrade();
 
                     if (courses.get(i).getGrade() >= 10) {
-                        gradeCourses.setGradeStatus("قبول");
+                        gradeCourses.setGradeResult("قبول");
                         passedCount = passedCount + courses.get(i).getCourseproftermid().getCourseid().getUnits();
                     }
-                    else {
-                        gradeCourses.setGradeStatus("رد");
+                    else if(courses.get(i).getGrade()!=-1){
+                        gradeCourses.setGradeResult("رد");
                         failedCount = failedCount + courses.get(i).getCourseproftermid().getCourseid().getUnits();
+                    }
+
+
+                    if(courses.get(i).getGrade()==-1){
+                        gradeCourses.setGradeStatus("اعلام نشده");
+                        gradeCourses.setGradeResult("نامعلوم");
+                    }
+                    else{
+                        gradeCourses.setGradeStatus("تایید استاد");
                     }
                     courseGradeList.add(gradeCourses);
                     for (int m=0;m<courseGradeList.size();m++) {

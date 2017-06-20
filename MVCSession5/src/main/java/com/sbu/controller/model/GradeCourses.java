@@ -9,20 +9,22 @@ public class GradeCourses {
     String profName;
     int courseUnit;
     int grade;
-    String  gradeStatus;
+    String  gradeResult;
     int courseType;
+    String gradeStatus;
 
 
     public GradeCourses(){}
 
-    public GradeCourses(int courseId, String courseName, String profName, int courseUnit, int grade, String gradeStatus, int courseType) {
+    public GradeCourses(int courseId, String courseName, String profName, int courseUnit, int grade, String gradeResult, int courseType, String gradeStatus) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.profName = profName;
         this.courseUnit = courseUnit;
         this.grade = grade;
-        this.gradeStatus = gradeStatus;
+        this.gradeResult = gradeResult;
         this.courseType = courseType;
+        this.gradeStatus = gradeStatus;
     }
 
     public int getCourseId() {
@@ -66,12 +68,12 @@ public class GradeCourses {
         this.grade = grade;
     }
 
-    public String getGradeStatus() {
-        return gradeStatus;
+    public String getGradeResult() {
+        return gradeResult;
     }
 
-    public void setGradeStatus(String gradeStatus) {
-        this.gradeStatus = gradeStatus;
+    public void setGradeResult(String gradeResult) {
+        this.gradeResult = gradeResult;
     }
 
     public int getCourseType() {
@@ -80,5 +82,13 @@ public class GradeCourses {
 
     public void setCourseType(int courseType) {
         this.courseType = courseType;
+    }
+
+    public String getGradeStatus() {
+        return gradeStatus;
+    }
+
+    public void setGradeStatus(String gradeStatus) {
+        this.gradeStatus = gradeStatus;
     }
 }
