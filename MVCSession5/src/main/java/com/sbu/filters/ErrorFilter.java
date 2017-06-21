@@ -31,15 +31,15 @@ public class ErrorFilter extends HttpServlet implements Filter {
         int role = (int) session.getAttribute("role");
 
         if(requestedURL.contains("/student") & role!=1){
-            response.sendRedirect("../error");
+            response.sendRedirect("/error");
         }
 
         else if(requestedURL.contains("/prof") & role!=2){
-            response.sendRedirect("../error");
+            response.sendRedirect("/error");
         }
 
         else if(requestedURL.contains("/manager") & role!=3){
-            response.sendRedirect("../error");
+            response.sendRedirect("/error");
         }
 
         filterChain.doFilter(request, response);

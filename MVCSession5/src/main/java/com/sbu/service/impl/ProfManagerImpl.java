@@ -26,6 +26,12 @@ public class ProfManagerImpl /*implements ProfManager*/ {
     {
         return profDAOImpl.findUser(id);        
     }
+
+    //Tara
+//    public Prof findProfByName(String name){
+//        Prof prof= profDAOImpl.findProfByName(name);
+//        return prof;
+//    }
     public String findProfEmail(int id)
     {
         return profDAOImpl.findEmail(id);

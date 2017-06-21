@@ -1,6 +1,7 @@
 package com.sbu.dao.impl;
 
 import com.sbu.dao.model.Courseprofterm;
+import com.sbu.dao.model.Term;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +19,12 @@ public class CourseProfTermDAOImpl {
 
     @PersistenceContext
     public EntityManager entityManager;
-
+//tara
     @Transactional
     public void insertCPT(Courseprofterm cpt){
         entityManager.persist(cpt);
     }
+    //tara
+
+
 }

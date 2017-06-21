@@ -22,5 +22,9 @@ public class TermDAOImpl {
         return entityManager.find(Term.class, id);
     }
 
+    public void insertTerm(Term term){
+        entityManager.persist(term);
+    }
+
 
 }

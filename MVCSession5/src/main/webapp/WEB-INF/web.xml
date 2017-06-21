@@ -32,6 +32,11 @@
         <filter-class>com.sbu.filters.ErrorFilter</filter-class>
     </filter>
 
+    <!--tara-->
+    <!--<filter>-->
+        <!--<filter-name>LogoutFilter</filter-name>-->
+        <!--<filter-class>com.sbu.filters.LogoutFilter</filter-class>-->
+    <!--</filter>-->
     <!--taraaaaaaaa-->
     <!--<filter>-->
         <!--<filter-name>StudentFilter</filter-name>-->
@@ -77,6 +82,12 @@
         <url-pattern>/home/*</url-pattern>
     </filter-mapping>
 
+
+    <!--tara-->
+    <!--<filter-mapping>-->
+        <!--<filter-name>LogoutFilter</filter-name>-->
+        <!--<url-pattern>/home/student/*</url-pattern>-->
+    <!--</filter-mapping>-->
     <!--taraaaaaaaaaaaaa-->
     <!--<filter-mapping>-->
         <!--<filter-name>StudentFilter</filter-name>-->

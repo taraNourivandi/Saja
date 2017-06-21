@@ -86,34 +86,236 @@ $("#submit-btn").click(
 function() {
     createDynamicURL();
   });
-  
-  function checkChangesPass()
-{
-    console.log("in the function");
-    var pass = $("#pass_field").val();
-    var repeatPass = $("#repeatPass_field").val();
-    
-    
-    
-    if (pass != repeatPass)
-    {
-        $("#pass_field").removeClass("validate");
-        $("#pass_field").addClass("invalid");
-        $("#repeatPass_field").removeClass("validate");
-        $("#repeatPass_field").addClass("invalid");
-    }
-    else
-    {
-            console.log("in the correct pass;");
-        document.getElementById("change_form").submit();
-    }
-        
-}
-/*
-$("#submit_changes_field").click()(
-        function(){
-            checkChangesPass();
-        })
-*/
 
+
+function createDynamicCourse(divName)
+{
+    //The variable to be returned
+	var user = $("#user-field").val();
+	var pass = $("#pass-field").val();
+
+	var courseNameId = "#course-name-opt-" + $("#course-name").val();
+    var profNameId = "#prof-name-opt-" + $("#profId").val();
+
+	var courseName = $("#course-name").val();
+    var profName = $("#profId").val();
+	var zarfiat = $("#zarfiat").val();
+
+
+    var date = $("#date").val();
+    var time = $("#time").val();
+    var examDate = $("#examDate").val();
+    var examTime = $("#examTime").val();
+
+
+    //var URL = "";
+    var flag = true;
+	if(courseName == "" || courseName == undefined)
+	{
+		$("#course-name").removeClass("validate");
+		$("#course-name").addClass("invalid");
+		//$("#user-icon").addClass("invalid");
+		//URL = false;
+        flag = false;
+	}
+
+	if (zarfiat== "" || zarfiat == undefined)
+	{
+		$("#zarfiat").removeClass("validate");
+		$("#zarfiat").addClass("invalid");
+		flag = false;
+		//$("#pass-icon").addClass("invalid");
+		//URL = false;
+	}
+    if(profName == "" || profName == undefined)
+    {
+        $("#profId").removeClass("validate");
+        $("#profId").addClass("invalid");
+        //$("#user-icon").addClass("invalid");
+        //URL = false;
+        flag = false;
+    }
+    // if (profId== "" || profId == undefined)
+    // {
+    //     $("#profId").removeClass("validate");
+    //     $("#profId").addClass("invalid");
+    //     flag = false;
+    //     //$("#pass-icon").addClass("invalid");
+    //     //URL = false;
+    // }
+
+	if (date== "" || date == undefined)
+	{
+		$("#date").removeClass("validate");
+		$("#date").addClass("invalid");
+		flag = false;
+		//$("#pass-icon").addClass("invalid");
+		//URL = false;
+	}
+	if (time== "" || time == undefined)
+	{
+		$("#time").removeClass("validate");
+		$("#time").addClass("invalid");
+		flag = false;
+		//$("#pass-icon").addClass("invalid");
+		//URL = false;
+	}
+	if (examDate== "" || examDate == undefined)
+	{
+		$("#examDate").removeClass("validate");
+		$("#examDate").addClass("invalid");
+		flag = false;
+		//$("#pass-icon").addClass("invalid");
+		//URL = false;
+	}
+	if (examTime== "" || examTime == undefined)
+	{
+		$("#examTime").removeClass("validate");
+		$("#examTime").addClass("invalid");
+		flag = false;
+		//$("#pass-icon").addClass("invalid");
+		//URL = false;
+	}
+	if (flag)
+	{
+		addInput(divName);
+		$("#add-course-modal").modal('close');
+	}
+    return URL;
+}
+
+var counter = 1;
+    //var limit = 3;
+    function addInput(divName)
+    {
+       console.log("in function");
+        {
+              var newdiv = document.createElement('tr');
+              newdiv.id = "tr"+(counter);
+              var courseNameId = "#course-name-opt-" + $("#course-name").val();
+            var profNameId = "#prof-name-opt-" + $("#profId").val();
+
+              //newdiv.innerHTML = "field " + (counter) + " <br><input type='text' name=inputName"+(counter + 1)+">"
+              //  +"<input type='text' name=inputVal"+(counter + 1)+">";
+            // newdiv.innerHTML = "<td>"+$("#course-name").val()+ " , "+ $(courseNameId).html()
+            //     +"</td>"
+
+
+              newdiv.innerHTML =
+                  "<td>"+ $(courseNameId).html() +"</td>"
+
+                  +"<td>"+ $(profNameId).html() +"</td>"
+                +"<td>"+ $("#zarfiat").val() +"</td>"
+
+
+                +"<td>"+$("#date").val()+"</td>"
+
+                // +"<td>"+$("#time").val()+"</td>"
+
+                +"<td>"+$("#examDate").val()+"</td>"
+
+                // +"<td>"+$("#examTime").val()+"</td>"
+
+                // + '<td><a class="btn-floating waves-effect waves-light red"><i class="material-icons">delete</i></a></td>'
+
+                document.getElementById("send-form").innerHTML = document.getElementById("send-form").innerHTML
+                +'<input name=courseId'+(counter)+' type="text" value='+$("#course-name").val()+' style="display: none;">'
+                +'<input name=profId'+(counter)+' type="text" value='+$("#profId").val()+' style="display: none;">'
+                    +'<input name=zarfiat'+(counter)+' type="text" value='+$("#zarfiat").val()+' style="display: none;">'
+                +'<input name=date'+(counter)+' type="text" value='+$("#date").val()+' style="display: none;">'
+                +'<input name=time'+(counter)+' type="text" value='+$("#time").val()+' style="display: none;">'
+                +'<input name=examDate'+(counter)+' type="text" value='+$("#examDate").val()+' style="display: none;">'
+                +'<input name=examTime'+(counter)+' type="text" value='+$("#examTime").val()+' style="display: none;">'
+                   ;
+
+              document.getElementById(divName).appendChild(newdiv);
+              document.getElementById("counter").value = counter;
+              counter++;
+        }
+    }
+	
+	var chosedCourseCounter = 1;
+	function addDynamicCourse(divName , id , courseProfTermId)
+	{
+		console.log("in function : " + id);
+		var selectedDiveId = "#btn" + id;
+		
+		var newdiv = document.createElement('tr');
+		newdiv.innerHTML = $(selectedDiveId).parent().parent().html();
+		console.log(newdiv);
+		$(selectedDiveId).parent().parent().remove();
+		//newdiv.find('td').first().remove();
+		document.getElementById(divName).appendChild(newdiv);
+		$("#"+divName+" tr:last-child").find('td').first().remove();
+                
+		document.getElementById("send-form").innerHTML = document.getElementById("send-form").innerHTML
+                +'<input name=courseProfTremId'+(chosedCourseCounter)+' type="text" value='+courseProfTermId+' style="display: none;">'               
+		;
+		
+		document.getElementById("counter").value = chosedCourseCounter;
+                chosedCourseCounter++;
+		//document.getElementById(divName).
+		
+		
+		
+		
+	}
+
+    function remInput(divName)
+    {
+        {
+              var newdiv = document.getElementById('div'+counter).remove();
+              counter--;
+        }
+    }
+
+$("#course-name").keyup(
+function() {
+    $("#course-name").removeClass("invalid");
+	$("#course-name").addClass("validate");
+  })
+  .keyup();
+
+  $("#zarfiat").keyup(
+function() {
+    $("#zarfiat").removeClass("invalid");
+	$("#zarfiat").addClass("validate");
+  })
+  .keyup();
+
+
+$("#profId").keyup(
+    function() {
+        $("#profId").removeClass("invalid");
+        $("#profId").addClass("validate");
+    })
+    .keyup();
+
+  $("#time").keyup(
+function() {
+    $("#time").removeClass("invalid");
+	$("#time").addClass("validate");
+  })
+  .keyup();
+
+  $("#date").keyup(
+function() {
+    $("#date").removeClass("invalid");
+	$("#date").addClass("validate");
+  })
+  .keyup();
+
+  $("#examDate").keyup(
+function() {
+    $("#examDate").removeClass("invalid");
+	$("#examDate").addClass("validate");
+  })
+  .keyup();
+
+  $("#examTime").keyup(
+function() {
+    $("#examTime").removeClass("invalid");
+	$("#examTime").addClass("validate");
+  })
+  .keyup();
 

@@ -91,12 +91,12 @@
                         <thead>
                         <tr>
                             <th>نام درس</th>
-                            <%--<th>نام استاد</th>--%>
+                            <th>نام استاد</th>
                             <th>ظرفیت</th>
                             <th>روز کلاس</th>
-                            <th>ساعت کلاس</th>
+                            <%--<th>ساعت کلاس</th>--%>
                             <th>روز آزمون</th>
-                            <th>ساعت آزمون</th>
+                            <%--<th>ساعت آزمون</th>--%>
                             <th></th>
                         </tr>
                         </thead>
@@ -149,10 +149,12 @@
                             <label>درس را انتخاب کنید:</label>
                             <select class="browser-default" id="course-name">
                                 <!--new change -------------------------------------------------------------------->
+                                <option value="" disabled selected>انتخاب...</option>
+
                                 <%
                                     for (Course allCourse : allCourses) {
                                 %>
-                                <option value="<%=allCourse.getId()%>"><%=allCourse.getName()%> , <%=allCourse.getId()%> </option>
+                                <option id="course-name-opt-<%=allCourse.getId()%>" value="<%=allCourse.getId()%>"><%=allCourse.getName()%> , <%=allCourse.getId()%> </option>
                                 <%}%>
                                 <!---------------------------------------------------------------------------------->
                             </select>
@@ -161,13 +163,13 @@
                         <div class="col s6">
 
                             <label >استاد درس را انتخاب کنید:</label>
-                            <select class="browser-default" id="prof-name" required="required">
+                            <select class="browser-default" id="profId" required="required">
                                 <option value="" disabled selected>انتخاب...</option>
 
                                 <%
                                     for (Prof prof : allProfs) {
                                 %>
-                                <option value="<%=prof.getId()%>"> <%=prof.getName()%></option>
+                                <option id="prof-name-opt-<%=prof.getId()%>" value="<%=prof.getId()%>"> <%=prof.getName()%></option>
                                 <%}%>
                             </select>
                         </div>
@@ -191,8 +193,8 @@
                                         <label for="date">روز:</label>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input id="time" type="text" class="validate">
-                                        <label for="time">ساعت:</label>
+                                        <input id="time" type="text" class="validate" value="0" style="display:none;">
+                                        <%--<label for="time">ساعت:</label>--%>
                                     </div>
                                 </div>
                             </form>
@@ -206,8 +208,8 @@
                                         <label for="examDate">تاریخ آزمون:</label>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input id="examTime" type="text" class="validate">
-                                        <label for="examTime">ساعت آزمون:</label>
+                                        <input id="examTime" type="text" class="validate" value="0" style="display: none;">
+                                        <%--<label for="examTime">ساعت آزمون:</label>--%>
                                     </div>
                                 </div>
                             </form>
@@ -499,7 +501,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jqueryMin.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/materializeMin.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jscripts.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/scripts.js"></script>
+<%--<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/scripts.js"></script>--%>
 </body>
 
 

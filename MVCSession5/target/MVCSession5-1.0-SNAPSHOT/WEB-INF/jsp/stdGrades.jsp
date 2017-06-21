@@ -106,11 +106,11 @@
                                     <th><center>کد درس</center></th>
                                     <th><center>نام درس</center></th>
                                     <th><center>نام استاد</center></th>
+                                    <th><center>نوع درس</center></th>
                                     <th><center>تعداد واحد</center></th>
                                     <th><center>نمره</center></th>
                                     <th><center>نتیجه نمره</center></th>
                                     <th><center>وضعیت نمره</center></th>
-                                    <th><center>نوع درس</center></th>
 
                                 </tr>
                                 </thead>
@@ -120,11 +120,12 @@
                                     <td><%=termGrade.get(k).getGradeCourses().get(i).getCourseId()%></td>
                                     <td><%=termGrade.get(k).getGradeCourses().get(i).getCourseName()%></td>
                                     <td><%=termGrade.get(k).getGradeCourses().get(i).getProfName()%></td>
+                                    <td><%=termGrade.get(k).getGradeCourses().get(i).getCourseType()%></td>
                                     <td><%=termGrade.get(k).getGradeCourses().get(i).getCourseUnit()%></td>
                                     <td><%=termGrade.get(k).getGradeCourses().get(i).getGrade()%></td>
+                                    <td><%=termGrade.get(k).getGradeCourses().get(i).getGradeResult()%></td>
                                     <td><%=termGrade.get(k).getGradeCourses().get(i).getGradeStatus()%></td>
-                                    <td></td>
-                                    <td><%=termGrade.get(k).getGradeCourses().get(i).getCourseType()%></td>
+
                                 </tr>
                                 <%}%>
                                 </tbody>

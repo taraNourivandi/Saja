@@ -31,6 +31,15 @@ public class ProfDAOImpl /*implements ProfDAO*/ {
     {
         return entityManager.find(Prof.class, id);
     }
+
+    //Tara
+//    public Prof findProfByName(String name){
+////        Query query = entityManager.createNamedQuery("Prof.findByName");
+////        query.setParameter("name", name);
+////        Object obj = query.executeUpdate();
+////        Prof prof = (Prof) obj;
+//        return entityManager.find(Prof.class);
+//    }
 	public String findEmail (int id)
     {
         return entityManager.find(Prof.class,id).getEmail();
@@ -51,7 +60,7 @@ public class ProfDAOImpl /*implements ProfDAO*/ {
     public boolean updateEmail(int id, String email)
     {
         System.out.println("in the update Email method in ProfDAOImpl");
-        Query query = entityManager.createNamedQuery("prof.updateEmail");
+        Query query = entityManager.createNamedQuery("Prof.updateEmail");
         query.setParameter("email", email);        
         query.setParameter("id", id);
         System.out.println(query.toString());

@@ -56,6 +56,9 @@ public class HomeController {
     @Autowired
     public StdgradesManagerImpl stdgradesManager;
 
+    @Autowired
+    public TermManagerImpl termManagerImp;
+
 
 
 
@@ -119,14 +122,14 @@ public class HomeController {
     }
     
     @RequestMapping(value = {"/logout"}, method = RequestMethod.GET)
-    public void logout (@ModelAttribute("SpringWeb")UserIn userIn, Model model,HttpServletRequest request, HttpServletResponse response) throws IOException 
+    public void logout (@ModelAttribute("SpringWeb")UserIn userIn, Model model,HttpServletRequest request, HttpServletResponse response) throws IOException
     {       
         request.getSession().removeAttribute("id");
         request.getSession().removeAttribute("username");
         request.getSession().removeAttribute("role");
         request.getSession().removeAttribute("name");
-        
-        response.sendRedirect("../login");
+
+        response.sendRedirect("/home/login");
         //return "main";               
     }   
     
@@ -518,7 +521,15 @@ public String newCourseAdding (HttpServletRequest request, HttpServletResponse r
 
         System.out.println("courseId:"+courseId+"\t pid:"+profId+"\t zarfiat:"+courseCapacity+"\t date:"+courseDate+ "\t time:" +courseTime+"\t examDate:"+courseExamDate+"\t examTime:"+courseExamTime);
 
-        courseProfTermManagerImpl.saveCPT(courseCapacity, courseDate, courseExamDate, courseId, profId , code);
+//        int professorId = profManagerImpl.findProfByName(profId).getId();
+        Term term = termManagerImp.findById(code);
+        System.out.println("termNAme:"+term.getName());
+        if(term!=null)
+            return "error";
+        else {
+            termManagerImp.insertTerm(code);
+            courseProfTermManagerImpl.saveCPT(courseCapacity, courseDate, courseExamDate, courseId, profId, code);
+        }
 
     }
     return "home";
