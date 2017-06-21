@@ -37,6 +37,12 @@ public class CourseGradeDAOImpl /*implements UserDAO*/ {
         entityManager.persist(stdgrade);
         //entityManager.getTransaction().commit();
     }
+    
+    public List<Stdgrade> findStdGradeByTermId (int id)
+    {
+        Query query = entityManager.createNamedQuery("Stdgrade.findByTerm");
+        return (List<Stdgrade>)query.setParameter("termId", id).getResultList(); 
+    }
 
     
     

@@ -88,7 +88,7 @@ public class CourseManagerImpl /*implements UserManager*/ {
         courseGender.add("مختلط");
         return courseGender;
     }
-
+    
     public void saveCourse(Integer ID, String name, int units,
             int preCourse,
             int courseTerm,
@@ -97,7 +97,7 @@ public class CourseManagerImpl /*implements UserManager*/ {
             int labtheorytype,
             int coursetype, 
             int coursegender)
-    {
+    {      
         //check inputs
         Course course = new Course(name ,units , labtheorytype, coursetype, coursegender,coursesection , preCourse);
         // Course(String name, int units, int labtheorytype, int coursetype, int coursegender, int coursesection, int preCourseID) {
@@ -107,34 +107,45 @@ public class CourseManagerImpl /*implements UserManager*/ {
         course.setTerm(term);
         
         courseDAOImpl.insertcourse(course);
-        /*
-        course.setId(ID);
-        course.setName(name);
-        course.setUnits(units);
-        course.setCoursegender(coursegender);
-        course.setCoursesection(coursesection);
-        course.setCoursetype(coursetype);
-        course.setLabtheorytype(labtheorytype);
-        
-
-        Collection<Course> courseCollection = new LinkedList<>();
-        courseCollection.add(courseDAOImpl.findCourse(preCourse));
-        course.setCourseCollection(courseCollection);
-        courseDAOImpl.insertcourse(course);
-        
-        */
-        /*
-        course.setId(8);
-        course.setName("a");
-        course.setUnits(3);
-        course.setCoursegender(1);
-        course.setCoursesection(1);
-        course.setCoursetype(2);
-        course.setLabtheorytype(2);
-        */
-        //courseDAOImpl.insertuser(user);
         
     }
+    
+    public boolean checkCourseInputs(Integer ID, String name, int units,
+            int preCourse,
+            int courseTerm,
+            int courseMager, 
+            int coursesection,
+            int labtheorytype,
+            int coursetype, 
+            int coursegender)
+    {      
+       if((ID==null) || (name==null) || (name.equals("")) || (units<1) || (units>10) || (preCourse<-1)
+               || (courseTerm < 1) || (courseMager < 1))
+           return false;
+       if( (labtheorytype>2) || (labtheorytype<1) || (coursegender<1) || (coursegender>3)
+               || (coursesection<1) || (coursesection>3) )
+           return false;
+       return true;       
+    }
+    
+    public boolean checkCourseUpdateInputs(Integer ID, int units,
+            int preCourse,
+            int courseTerm,
+            int courseMager, 
+            int coursesection,
+            int labtheorytype,
+            int coursetype, 
+            int coursegender)
+    {      
+       if((ID==null) || (units<1) || (units>10) || (preCourse<-1)
+               || (courseTerm < 1) || (courseMager < 1))
+           return false;
+       if( (labtheorytype>2) || (labtheorytype<1) || (coursegender<1) || (coursegender>3)
+               || (coursesection<1) || (coursesection>3) )
+           return false;
+       return true;       
+    }
+       
     
     public void updateCourse(Integer ID, int units,
             int preCourse,

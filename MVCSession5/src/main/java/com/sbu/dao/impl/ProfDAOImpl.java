@@ -31,5 +31,14 @@ public class ProfDAOImpl /*implements ProfDAO*/ {
     {
         return entityManager.find(Prof.class, id);
     }
+    
+    public List<Prof> findAllProf()
+    {
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Prof> cq = builder.createQuery(Prof.class);
+        Root<Prof> root = cq.from(Prof.class);
+        cq.select(root);
+        return entityManager.createQuery(cq).getResultList();        
+    }
 }
 

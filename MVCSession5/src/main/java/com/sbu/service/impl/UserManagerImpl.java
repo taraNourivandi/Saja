@@ -66,6 +66,7 @@ public class UserManagerImpl /*implements UserManager*/ {
         hashList.put("تعریف/تغییر ترم", "");
         hashList.put("مشاهده دروس ارائه شده در هر ترم", "");
         hashList.put("تغییر مشخصات", "changePassword");
+        hashList.put("مشاهده ی دروس اساتید", "manager/choseProf");
         rolesAccess.add(hashList);
         
         

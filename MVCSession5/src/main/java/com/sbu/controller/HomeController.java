@@ -146,7 +146,7 @@ public class HomeController {
         request.getSession().removeAttribute("role");
         request.getSession().removeAttribute("name");
         
-        response.sendRedirect("../login");
+        response.sendRedirect("/login");
         //return "main";               
     }   
     
@@ -203,6 +203,9 @@ public class HomeController {
         int coursetype = courseIn.getCoursetype();
         int coursegender = courseIn.getCoursegender();
         
+        if (!courseManagerImpl.checkCourseInputs(ID,name,units,preCourse,courseTerm
+                ,courseMager,coursesection,labtheorytype,coursetype,coursegender))
+            return "error";
         courseManagerImpl.saveCourse(ID,name,units,preCourse,courseTerm
                 ,courseMager,coursesection,labtheorytype,coursetype,coursegender);
         response.sendRedirect("../manager");
@@ -225,6 +228,11 @@ public class HomeController {
         int coursegender = courseIn.getCoursegender();
         
         System.out.println("change course: " +"units "+ units + " precourse" + preCourse );
+        
+        if (!courseManagerImpl.checkCourseUpdateInputs(ID,units,preCourse,courseTerm
+                ,courseMager,coursesection,labtheorytype,coursetype,coursegender))
+            return "error";
+        
         courseManagerImpl.updateCourse(ID,units,preCourse,courseTerm
                 ,courseMager,coursesection,labtheorytype,coursetype,coursegender);
         response.sendRedirect("../manager");
@@ -266,25 +274,34 @@ public class HomeController {
             return "error";   
         int numberOfCourses = Integer.parseInt(request.getParameter("numberOfCourses"));
         System.out.println("numberOfCourses : " + numberOfCourses);
-        Stdtable student = stdManagerImpl.findStd((int) request.getSession().getAttribute("id"));
+        int stdId = (int) request.getSession().getAttribute("id");
+        ArrayList<Courseprofterm> coursesToAdd = new ArrayList<Courseprofterm>();
+        ArrayList<Integer> coursesId = new ArrayList<Integer>();
         
         for(int i = 1;i<=numberOfCourses;i++)
         {
             String name = "courseProfTremId"+i;
-            int courseProfTermId = Integer.parseInt(request.getParameter(name)); 
-            Courseprofterm courseToAdd = courseProfTermManagerImpl.findCourseproftermById(courseProfTermId);
-            Stdgrade newCourse = new Stdgrade();
-            newCourse.setCourseproftermid(courseToAdd);
-            newCourse.setGrade(0);
-            newCourse.setGradestatus("نامشخص");
-            newCourse.setStdid(student);   
-            
-            stdGradeManagerImpl.insertStdGrade(newCourse);
-            
-            
+            int courseProfTermId = Integer.parseInt(request.getParameter(name));
+            coursesId.add(courseProfTermId);            
         }
         
-        return "home";
+        int result = stdGradeManagerImpl.insertCoursesForStdById(coursesId , stdId);    
+        System.out.println("resutl is : "+ result);
+        if (result == 0)
+            return "home";
+        else 
+            return "error";
     } 
+    
+    @RequestMapping(value = {"/manager/choseProf"}, method = RequestMethod.GET)
+    public String choseProfToSeeClassPage (HttpServletRequest request, HttpServletResponse response) throws IOException 
+    {       
+        if((int)request.getSession().getAttribute("role") != 3)
+            //not correct -> hove to be load sutable error page
+            return "error";       
+        System.out.println("in choseProfToSeeClassPage");
+        request.setAttribute("profs",profManagerImpl.findAllProf());
+        return "choseProf";        
+    }
     
 }

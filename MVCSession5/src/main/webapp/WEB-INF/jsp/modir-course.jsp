@@ -72,9 +72,9 @@
                     <div class="row">
                         <div class="col s6">
                             
-                                <div class="input-field col s6">
-                                    <input id="input_course_id" name="ID" type="number" data-length="10" required>
-                                    <label for="input_course_id">کد درس</label>
+                                <div class="input-field col s6" >
+                                    <input style="display: none;" value = "0" id="input_course_id" name="ID" type="number" data-length="10" required>
+                                    <!--<label for="input_course_id">کد درس</label>-->
                                 </div>
                            
                         </div>
@@ -167,7 +167,7 @@
 
 
 
-<div class="col s6">
+                        <div class="col s6">
                             <label>نوع درس(آزمایشگاهی بودن):</label>
                             <select name="labtheorytype" class="browser-default" required>
                                 <option value="" disabled selected>انتخاب...</option>
@@ -196,13 +196,7 @@
                                     %>
                                     <option value="<%=gender%>"> <%=gender%> </option>  
                                      <%}%>
-                                    </SELECT>
-
-
-                                    
-
-                                
-                            
+                                    </SELECT>                           
                         </div>
                     </div>
                     <button class="btn-floating btn-large waves-effect waves-light green"
@@ -215,7 +209,7 @@
                    
 
 					
-               		</form>
+                </form>
             </div>
 
             

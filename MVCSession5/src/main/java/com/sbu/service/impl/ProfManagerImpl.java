@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.sbu.dao.impl.ProfDAOImpl;
 import com.sbu.dao.model.Prof;
+import java.util.List;
 
 @Service
 public class ProfManagerImpl /*implements ProfManager*/ {
@@ -18,6 +19,11 @@ public class ProfManagerImpl /*implements ProfManager*/ {
     public Prof findProf(int id)
     {
         return profDAOImpl.findUser(id);        
+    }
+    
+    public List<Prof> findAllProf()
+    {
+        return profDAOImpl.findAllProf();        
     }
     
 }
